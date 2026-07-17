@@ -60,7 +60,7 @@ paste or pipe into OpenCode.
 ## 5. First Run in This Repo
 
 ```bash
-cd lean-startup-ai-assistant-workshop
+cd ai-powered-digital-coo-research-assistant/workshop-repo
 opencode "Read CLAUDE.md and summarize this project in one sentence."
 ```
 

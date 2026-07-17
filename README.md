@@ -27,11 +27,16 @@ fullscreen. No dependencies, works offline.
 
 ## Quick Start (facilitator)
 ```bash
-cd workshop-repo
+git clone https://github.com/alhaol/ai-powered-digital-coo-research-assistant.git
+cd ai-powered-digital-coo-research-assistant/workshop-repo
 bash setup/verify-setup.sh          # confirm the room is ready
 cp reference-commands/analyze-survey.md .claude/commands/   # prep the live demo
 # open ../presentation/index.html for the deck
 ```
+
+**Participants clone the same repo** and work inside `workshop-repo/`. The deck is
+`presentation/index.html` — open it in any browser; `S` for speaker notes, `O` for
+the slide overview, `T` to start the 90-minute pacing timer, `?` for all keys.
 
 ## Data Integrity Note
 The survey CSV was generated deterministically so its headline numbers exactly

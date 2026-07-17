@@ -11,8 +11,8 @@
 
 1. Install Claude Code CLI: `npm install -g @anthropic-ai/claude-code`
    — OR — Install OpenCode CLI: `go install github.com/opencode-ai/opencode@latest`
-2. Clone this repo: `git clone https://github.com/[your-org]/lean-startup-ai-assistant-workshop.git`
-3. Navigate to the repo: `cd lean-startup-ai-assistant-workshop`
+2. Clone the repo: `git clone https://github.com/alhaol/ai-powered-digital-coo-research-assistant.git`
+3. Navigate to the workshop: `cd ai-powered-digital-coo-research-assistant/workshop-repo`
 4. Start the first exercise: Open `exercises/module-1-build/exercise-1a-hypotheses.md`
 
 ## 📋 Prerequisites

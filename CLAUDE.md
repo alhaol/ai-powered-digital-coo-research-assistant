@@ -17,7 +17,15 @@ Almost every file is prose (markdown). The only executable artifacts are `worksh
 cd workshop-repo && bash setup/verify-setup.sh   # checks CLI, API key, and that fixture files exist
 ```
 
-The deck has no build step — open `presentation/index.html` in a browser. Arrow keys navigate, `F` toggles fullscreen, and the current slide persists in the URL hash.
+The deck has no build step — open `presentation/index.html` in a browser. Arrows navigate; `S` speaker notes, `O` overview, `T` pacing timer, `?` all keys. The current slide persists in the URL hash.
+
+To verify a deck change actually renders (structure alone won't tell you a slide overflows), drive it with Playwright — every slide must fit at 1920×1080 both normally and with the notes panel open, since notes reclaim 36vh:
+
+```python
+# pip install playwright && python -m playwright install chromium
+# load file:///…/presentation/index.html, call show(n) for n in 0..49,
+# and assert no child's bottom exceeds (innerHeight - notesHeight).
+```
 
 ## The most important thing to know
 
@@ -52,6 +60,8 @@ awk -F',' 'NR>1{c++; if($5=="Ingredient transparency") t++; if($6=="Yes") cs++} 
 ```
 
 **`presentation/index.html` mirrors `slides/slide-outline.md`.** The outline is the spec, the HTML the rendering; both assert 50 slides and the deck numbers each `<section class="slide">` with an HTML comment. Adding a slide means updating both, plus the counts stated in `presentation/README.md` and the outline header.
+
+**The deck is the only home for speaker notes.** Each slide carries an `<aside class="notes">` that names the exercise file it maps to and where to slow down — that content exists nowhere else, so `slide-outline.md` is not a superset of the deck and regenerating the HTML from the outline would silently destroy it. The deck must also stay self-contained: everything is inlined, and the module slots in the `PHASES` array in its `<script>` duplicate the roadmap table on slide 10 and the module table in `workshop-repo/README.md` — change a timing and all three need it. Do not introduce CDN links (Chart.js, Mermaid, fonts); the deck's whole promise is that it opens offline from a USB stick.
 
 ## Conventions
 

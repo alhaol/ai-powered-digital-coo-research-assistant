@@ -120,7 +120,7 @@ See `quick-reference-card.md` for the one-page cheat sheet.
 ---
 
 # Resources
-- **Repo:** github.com/[your-org]/lean-startup-ai-assistant-workshop
+- **Repo:** github.com/alhaol/ai-powered-digital-coo-research-assistant
 - **Claude Code docs:** commands & skills
 - **Recommended reading:** *The Lean Startup* (Ries), *The Mom Test* (Fitzpatrick),
   *Zero to One* (Thiel)

@@ -47,7 +47,7 @@ $env:ANTHROPIC_API_KEY = "sk-ant-..."
 ## 4. First Run in This Repo
 
 ```bash
-cd lean-startup-ai-assistant-workshop
+cd ai-powered-digital-coo-research-assistant/workshop-repo
 claude "Read CLAUDE.md and tell me, in one sentence, what this project is about."
 ```
 
