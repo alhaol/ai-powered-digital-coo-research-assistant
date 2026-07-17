@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Environment / secrets
+.env
+.env.local
+*.key
+api-key.txt
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Workshop live output (generated during sessions)
+live-demo-outputs/
+*.local.md
+
+# Build artifacts
+*.pdf.tmp

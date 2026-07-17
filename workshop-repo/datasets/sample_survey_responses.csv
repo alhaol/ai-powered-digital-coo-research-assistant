@@ -1,0 +1,51 @@
+respondent_id,age,gender,location,primary_concern,carbon_shipping_in_top3,willingness_to_pay_premium,current_monthly_spend_usd,buys_sustainable_skincare_now,top_feature_requested,verbatim_comment
+R001,30,Female,Seattle WA,Ingredient transparency,No,0% (list price only),40,Rarely,Refillable packaging,"Every brand says natural. I want proof, not a logo."
+R002,33,Male,Brooklyn NY,Ingredient transparency,No,0% (list price only),55,Rarely,QR code to ingredient sourcing,"Every brand says natural. I want proof, not a logo."
+R003,29,Male,Seattle WA,Ingredient transparency,Yes,10-15%,30,Sometimes,QR code to ingredient sourcing,Greenwashing is exhausting. Transparency would earn my trust and my money.
+R004,33,Female,Portland OR,Ingredient transparency,Yes,20%+,70,Sometimes,QR code to ingredient sourcing,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R005,26,Female,Brooklyn NY,Ingredient transparency,No,10-15%,55,Often,QR code to ingredient sourcing,Greenwashing is exhausting. Transparency would earn my trust and my money.
+R006,32,Female,San Diego CA,Carbon-neutral shipping,No,10-15%,25,Rarely,QR code to ingredient sourcing,Carbon-neutral shipping is nice but honestly I assume everyone does it now.
+R007,31,Female,San Diego CA,Ingredient transparency,No,20%+,45,Rarely,QR code to ingredient sourcing,Greenwashing is exhausting. Transparency would earn my trust and my money.
+R008,29,Male,Nashville TN,Ingredient transparency,No,20%+,60,Sometimes,Refillable packaging,"Every brand says natural. I want proof, not a logo."
+R009,28,Female,Seattle WA,Ingredient transparency,No,10-15%,25,Sometimes,Refillable packaging,I read every label and still can't tell who's honest.
+R010,33,Female,Chicago IL,Ingredient transparency,No,20%+,25,Sometimes,QR code to ingredient sourcing,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R011,34,Male,Nashville TN,Ingredient transparency,No,10-15%,70,Sometimes,Refillable packaging,"Every brand says natural. I want proof, not a logo."
+R012,25,Non-binary,Austin TX,Ingredient transparency,Yes,20%+,35,Rarely,QR code to ingredient sourcing,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R013,34,Female,Seattle WA,Ingredient transparency,No,10-15%,55,Often,Fragrance-free options,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R014,34,Female,Boston MA,Ingredient transparency,No,10-15%,25,Sometimes,Fragrance-free options,I read every label and still can't tell who's honest.
+R015,26,Male,Boston MA,Packaging waste,No,10-15%,70,Sometimes,Fragrance-free options,I'd pay more if I could refill instead of rebuy.
+R016,29,Female,Chicago IL,Packaging waste,Yes,0% (list price only),40,Sometimes,Fragrance-free options,I'd pay more if I could refill instead of rebuy.
+R017,31,Female,Denver CO,Ingredient transparency,No,0% (list price only),60,Rarely,QR code to ingredient sourcing,"If I could scan a bottle and see the real sourcing, I'd switch today."
+R018,26,Female,Minneapolis MN,Ingredient transparency,No,10-15%,30,Sometimes,Auto-refill subscription,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R019,33,Female,Nashville TN,Ingredient transparency,No,10-15%,45,Rarely,Auto-refill subscription,"Every brand says natural. I want proof, not a logo."
+R020,30,Female,Seattle WA,Ingredient transparency,Yes,10-15%,50,Sometimes,QR code to ingredient sourcing,"If I could scan a bottle and see the real sourcing, I'd switch today."
+R021,27,Male,Nashville TN,Packaging waste,No,10-15%,45,Sometimes,Auto-refill subscription,Packaging waste is what makes me feel guilty buying skincare.
+R022,35,Non-binary,Portland OR,Ingredient transparency,No,10-15%,70,Often,Refillable packaging,"If I could scan a bottle and see the real sourcing, I'd switch today."
+R023,35,Female,Brooklyn NY,Ingredient transparency,Yes,10-15%,45,Often,QR code to ingredient sourcing,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R024,26,Non-binary,Brooklyn NY,Carbon-neutral shipping,Yes,10-15%,45,Sometimes,QR code to ingredient sourcing,Shipping isn't the thing I think about — it's what's in the bottle.
+R025,34,Female,Chicago IL,Packaging waste,No,10-15%,40,Often,Refillable packaging,Packaging waste is what makes me feel guilty buying skincare.
+R026,35,Female,Nashville TN,Ingredient transparency,No,0% (list price only),60,Sometimes,QR code to ingredient sourcing,"If I could scan a bottle and see the real sourcing, I'd switch today."
+R027,25,Female,San Diego CA,Ingredient transparency,No,10-15%,45,Sometimes,Auto-refill subscription,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R028,25,Female,Brooklyn NY,Ingredient transparency,No,10-15%,45,Sometimes,Fragrance-free options,"Every brand says natural. I want proof, not a logo."
+R029,32,Non-binary,San Diego CA,Ingredient transparency,Yes,10-15%,70,Rarely,QR code to ingredient sourcing,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R030,26,Female,Brooklyn NY,Packaging waste,No,10-15%,70,Often,QR code to ingredient sourcing,The amount of plastic in my bathroom is embarrassing.
+R031,30,Non-binary,Nashville TN,Carbon-neutral shipping,No,20%+,35,Often,QR code to ingredient sourcing,Shipping isn't the thing I think about — it's what's in the bottle.
+R032,27,Female,Denver CO,Packaging waste,No,0% (list price only),50,Rarely,Auto-refill subscription,The amount of plastic in my bathroom is embarrassing.
+R033,30,Female,Seattle WA,Ingredient transparency,No,20%+,30,Rarely,Refillable packaging,"If I could scan a bottle and see the real sourcing, I'd switch today."
+R034,33,Male,Boston MA,Carbon-neutral shipping,No,0% (list price only),35,Sometimes,Fragrance-free options,Carbon-neutral shipping is nice but honestly I assume everyone does it now.
+R035,27,Female,San Diego CA,Ingredient transparency,No,0% (list price only),25,Often,Fragrance-free options,"Every brand says natural. I want proof, not a logo."
+R036,30,Male,Seattle WA,Carbon-neutral shipping,No,0% (list price only),45,Sometimes,Fragrance-free options,Carbon-neutral shipping is nice but honestly I assume everyone does it now.
+R037,26,Male,Portland OR,Carbon-neutral shipping,Yes,10-15%,60,Rarely,QR code to ingredient sourcing,Carbon-neutral shipping is nice but honestly I assume everyone does it now.
+R038,28,Male,Chicago IL,Ingredient transparency,Yes,20%+,45,Often,QR code to ingredient sourcing,"Every brand says natural. I want proof, not a logo."
+R039,28,Female,Seattle WA,Ingredient transparency,No,20%+,55,Often,QR code to ingredient sourcing,"If I could scan a bottle and see the real sourcing, I'd switch today."
+R040,29,Female,Denver CO,Packaging waste,No,10-15%,50,Rarely,QR code to ingredient sourcing,Packaging waste is what makes me feel guilty buying skincare.
+R041,33,Male,Nashville TN,Ingredient transparency,No,10-15%,50,Rarely,Refillable packaging,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R042,26,Female,Brooklyn NY,Ingredient transparency,Yes,10-15%,45,Sometimes,Auto-refill subscription,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R043,26,Non-binary,San Diego CA,Ingredient transparency,No,10-15%,50,Sometimes,Refillable packaging,Give me traceability. That's the whole game for me.
+R044,30,Male,Boston MA,Ingredient transparency,Yes,10-15%,70,Sometimes,Refillable packaging,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R045,31,Non-binary,Seattle WA,Ingredient transparency,No,10-15%,45,Sometimes,Auto-refill subscription,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R046,31,Female,Nashville TN,Ingredient transparency,No,10-15%,70,Sometimes,Auto-refill subscription,Give me traceability. That's the whole game for me.
+R047,35,Female,Chicago IL,Ingredient transparency,No,20%+,55,Sometimes,QR code to ingredient sourcing,I never know if 'clean' actually means anything. Show me where each ingredient comes from.
+R048,35,Female,Boston MA,Ingredient transparency,Yes,10-15%,50,Often,Auto-refill subscription,Give me traceability. That's the whole game for me.
+R049,26,Female,Nashville TN,Ingredient transparency,No,20%+,45,Rarely,Fragrance-free options,Give me traceability. That's the whole game for me.
+R050,31,Female,San Diego CA,Packaging waste,Yes,10-15%,45,Rarely,QR code to ingredient sourcing,Packaging waste is what makes me feel guilty buying skincare.

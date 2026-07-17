@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lean Startup AI Assistant — Workshop Deck</title>
+<style>
+  :root{
+    --bg:#0d1512; --bg2:#12201a; --panel:#16241d; --ink:#e8f0ea; --muted:#9db3a6;
+    --green:#3ecf8e; --green2:#7bd88f; --sand:#e8dcc0; --line:#2a3d33;
+    --code:#0a120e; --amber:#f0b34a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:radial-gradient(1200px 800px at 70% -10%, #17281f 0%, var(--bg) 55%);
+    color:var(--ink); font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+    overflow:hidden;
+  }
+  .deck{height:100vh;width:100vw;position:relative}
+  .slide{
+    position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:6vh 8vw; opacity:0; transition:opacity .35s ease;
+  }
+  .slide.active{display:flex;opacity:1}
+  .kicker{color:var(--green);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:1rem}
+  h1{font-size:clamp(2rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;margin-bottom:1rem}
+  h2{font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.1;margin-bottom:1.2rem}
+  h3{font-size:clamp(1.1rem,2vw,1.5rem);color:var(--green2);margin:.6rem 0}
+  p,li{font-size:clamp(1rem,1.6vw,1.35rem);line-height:1.5;color:var(--ink)}
+  .muted{color:var(--muted)}
+  .big{font-size:clamp(2.4rem,7vw,5.5rem);font-weight:800;color:var(--green2);letter-spacing:-.03em}
+  ul{margin:.6rem 0 0 1.2rem}li{margin:.45rem 0}
+  .center{align-items:center;text-align:center}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.6rem}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  code,pre{font-family:"JetBrains Mono","Consolas",monospace}
+  pre{background:var(--code);border:1px solid var(--line);border-left:4px solid var(--green);
+      border-radius:10px;padding:1.1rem 1.3rem;overflow:auto;font-size:clamp(.75rem,1.25vw,1rem);
+      line-height:1.55;color:#d6e8dd}
+  pre .c{color:#6f8a7c}
+  pre .v{color:var(--amber)}
+  pre .cmd{color:var(--green2)}
+  .tag{display:inline-block;background:rgba(62,207,142,.12);color:var(--green2);
+       border:1px solid var(--green);border-radius:999px;padding:.25rem .8rem;font-size:.85rem;font-weight:600}
+  table{border-collapse:collapse;width:100%;font-size:clamp(.8rem,1.35vw,1.1rem)}
+  th,td{border:1px solid var(--line);padding:.55rem .8rem;text-align:left}
+  th{background:var(--bg2);color:var(--green2)}
+  .quote{font-size:clamp(1.6rem,4vw,3rem);font-weight:700;line-height:1.2;max-width:16ch}
+  .stat{font-size:clamp(3rem,9vw,7rem);font-weight:800;color:var(--green2);line-height:1}
+  .pill-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+  .chk{color:var(--green)}
+  .footer{position:absolute;bottom:2.2vh;left:8vw;right:8vw;display:flex;justify-content:space-between;
+          align-items:center;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:.7rem}
+  .progress{position:absolute;top:0;left:0;height:4px;background:var(--green);transition:width .3s;z-index:20}
+  .nav{position:absolute;bottom:1.4vh;right:1.4vw;display:flex;gap:.4rem;z-index:20}
+  .nav button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;
+     width:38px;height:34px;font-size:1rem;cursor:pointer}
+  .nav button:hover{border-color:var(--green);color:var(--green2)}
+  .hint{position:absolute;bottom:1.6vh;left:1.4vw;color:var(--muted);font-size:.75rem;z-index:20}
+  .emoji{font-size:clamp(2rem,4vw,3rem)}
+  .accent{color:var(--green2)}
+  .sand{color:var(--sand)}
+  .lead{font-size:clamp(1.15rem,2vw,1.6rem);color:var(--muted);max-width:60ch}
+  svg{max-width:100%;height:auto}
+  .fade{opacity:.6}
+
+  /* ---- speaker notes (S) ---- */
+  .notes{display:none}
+  body.notes-on .notes{
+    display:block;position:absolute;left:0;right:0;bottom:0;z-index:30;
+    background:var(--code);border-top:2px solid var(--green);
+    padding:.9rem 8vw 1.1rem;color:var(--muted);font-size:.95rem;line-height:1.5;
+    max-height:32vh;overflow:auto;text-align:left;
+  }
+  body.notes-on .notes::before{
+    content:"Speaker notes";display:block;color:var(--green);font-size:.7rem;
+    font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem;
+  }
+  body.notes-on .notes b{color:var(--amber)}
+  body.notes-on .notes code{color:var(--green2);font-size:.9em}
+  body.notes-on .slide{padding-bottom:36vh;justify-content:flex-start;padding-top:8vh}
+  body.notes-on .footer{display:none}
+
+  /* ---- overview (O) ---- */
+  .ov{display:none;position:fixed;inset:0;z-index:50;background:rgba(6,12,9,.975);overflow:auto;padding:4vh 4vw}
+  body.ov-on .ov{display:block}
+  .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.7rem;margin-top:1rem}
+  .ov-item{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.55rem .7rem;
+    cursor:pointer;min-height:66px;display:flex;flex-direction:column;gap:.25rem}
+  .ov-item:hover{border-color:var(--green)}
+  .ov-item.cur{border-color:var(--green);background:#1a2c22}
+  .ov-num{color:var(--green);font-weight:700;font-size:.7rem;letter-spacing:.08em}
+  .ov-t{color:var(--ink);font-size:.78rem;line-height:1.25}
+  .ov-ph{color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em}
+
+  /* ---- help (?) ---- */
+  .help{display:none;position:fixed;inset:0;z-index:60;background:rgba(6,12,9,.95);align-items:center;justify-content:center}
+  body.help-on .help{display:flex}
+  .help-box{background:var(--panel);border:1px solid var(--green);border-radius:14px;padding:1.8rem 2.2rem;max-width:540px}
+  .help-box td{border:none;padding:.3rem .7rem;font-size:.95rem}
+  .help-box td:first-child{width:1%;white-space:nowrap}
+  kbd{background:var(--code);border:1px solid var(--line);border-radius:5px;padding:.12rem .5rem;
+      font-family:"JetBrains Mono",monospace;color:var(--green2);font-size:.85rem}
+
+  /* ---- pacing timer (T) ---- */
+  .pace{font-variant-numeric:tabular-nums;font-size:.8rem}
+  .pace.over{color:var(--amber)}
+  .pace.idle{opacity:.45}
+
+  @media (max-width:820px){.two,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+<!-- 1 -->
+<section class="slide center">
+  <div class="tag">90-Minute Hands-On Workshop</div>
+  <h1 style="margin-top:1.2rem">Build Your AI-Powered<br><span class="accent">Digital COO</span> & Research Assistant</h1>
+  <p class="lead">The Lean Startup AI Assistant — validate an idea in under an hour, and build your own Claude Code commands & skills along the way.</p>
+  <p class="muted" style="margin-top:2rem">Claude Code CLI · OpenCode CLI · Markdown · Git &nbsp;|&nbsp; Dr. Ibrahim Abualhaol · 18 July 2026 · <span class="sand">▢ QR → repo</span></p>
+  <aside class="notes">Room check before you start: everyone cloned the repo and <code>bash setup/verify-setup.sh</code> is all green. 90 minutes, hands-on — they leave with 6 commands and 1 skill in Git.</aside>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="kicker">The Problem</div>
+  <div class="two">
+    <div><div class="stat">68%</div><h2 style="margin-top:1rem">of a solo founder's time goes to <span class="accent">operations</span> — not product.</h2></div>
+    <div class="card"><p class="muted">Founders wear every hat — CEO, CTO, CFO, CMO, COO — at once. The cognitive load is crushing, and critical operational work falls through the cracks.</p>
+    <h3 style="margin-top:1rem">What if an AI could be your always-on COO?</h3></div>
+  </div>
+  <aside class="notes">The hook. Land the number, then pause. <b>Source this stat or soften it before presenting</b> — it is currently unattributed in slides/slide-outline.md.</aside>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="kicker">The Idea</div>
+  <h2>What if you had a COO?</h2>
+  <div class="two">
+    <div class="card"><h3>😵 Founder, alone</h3><ul class="muted">
+      <li>Re-typing the same prompts</li><li>Weeks lost to research & docs</li>
+      <li>Guessing instead of measuring</li><li>Drowning in the ops grind</li></ul></div>
+    <div class="card"><h3>🤖 Founder + AI-COO</h3><ul>
+      <li>Generates interview scripts & landing copy in minutes</li>
+      <li>Analyzes surveys & competitors instantly</li>
+      <li>Recommends pivot-or-persevere with evidence</li>
+      <li>Drafts SOPs, models, email sequences</li></ul></div>
+  </div>
+  <aside class="notes">Contrast, don't lecture. Left is their Tuesday; right is the rest of the workshop. 30 seconds.</aside>
+</section>
+
+<!-- 4 -->
+<section class="slide center">
+  <div class="kicker">Live Demo</div>
+  <h1 class="quote" style="max-width:22ch">Let me show you something.</h1>
+  <p class="lead" style="margin-top:1.5rem">Switch to the terminal. Watch the AI read a messy CSV and reason in real time.</p>
+  <aside class="notes">Stop talking. Switch to the terminal now. Do not narrate the setup.</aside>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="kicker">Live Demo — Raw Prompt</div>
+  <h2>Messy CSV → market report in 30 seconds</h2>
+  <pre><span class="cmd">claude</span> "Read datasets/sample_survey_responses.csv. Analyze the data and
+produce a report: demographics, top 3 pain points, willingness-to-pay
+distribution, most requested features, and key verbatim quotes.
+Format as a professional markdown report."</pre>
+  <p class="muted" style="margin-top:1.2rem">The audience sees the AI read the file, reason, and write — no spreadsheet, no analyst.</p>
+  <aside class="notes"><b>THE most important moment of the workshop</b> (FACILITATOR-CHECKLIST.md). Rehearse until flawless. Use the real CSV from the repo. They must <i>feel</i> messy-CSV-to-report in ~30s. This earns you the next 85 minutes.</aside>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="kicker">Live Demo — The Command 🔧</div>
+  <h2>Same output. <span class="accent">One-tenth the typing.</span></h2>
+  <pre><span class="cmd">/project:analyze-survey</span> datasets/sample_survey_responses.csv</pre>
+  <p style="margin-top:1.2rem">Identical report — from a reusable command you'll learn to build today.</p>
+  <p class="lead" style="margin-top:1rem">Today you won't just <span class="sand">use</span> prompts. You'll <span class="accent">build tools</span>.</p>
+  <aside class="notes">The turn: same output, one line. This is the whole thesis — they are not here to use prompts, they are here to build tools. Copy reference-commands/analyze-survey.md into .claude/commands/ beforehand.</aside>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="kicker">The Framework</div>
+  <h2>The Lean Startup Loop — with AI at every stage</h2>
+  <svg viewBox="0 0 900 300" width="900">
+    <defs><marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#3ecf8e"/></marker></defs>
+    <g font-family="Segoe UI" text-anchor="middle">
+      <rect x="40" y="90" width="220" height="120" rx="16" fill="#16241d" stroke="#3ecf8e"/>
+      <text x="150" y="135" fill="#7bd88f" font-size="26" font-weight="700">BUILD</text>
+      <text x="150" y="165" fill="#9db3a6" font-size="15">Hypotheses · scripts</text>
+      <text x="150" y="185" fill="#9db3a6" font-size="15">landing pages</text>
+      <rect x="340" y="90" width="220" height="120" rx="16" fill="#16241d" stroke="#3ecf8e"/>
+      <text x="450" y="135" fill="#7bd88f" font-size="26" font-weight="700">MEASURE</text>
+      <text x="450" y="165" fill="#9db3a6" font-size="15">Competitive + survey</text>
+      <text x="450" y="185" fill="#9db3a6" font-size="15">analysis · insights</text>
+      <rect x="640" y="90" width="220" height="120" rx="16" fill="#16241d" stroke="#3ecf8e"/>
+      <text x="750" y="135" fill="#7bd88f" font-size="26" font-weight="700">LEARN</text>
+      <text x="750" y="165" fill="#9db3a6" font-size="15">Pivot / persevere</text>
+      <text x="750" y="185" fill="#9db3a6" font-size="15">sprint plan</text>
+      <line x1="262" y1="150" x2="336" y2="150" stroke="#3ecf8e" stroke-width="3" marker-end="url(#ah)"/>
+      <line x1="562" y1="150" x2="636" y2="150" stroke="#3ecf8e" stroke-width="3" marker-end="url(#ah)"/>
+      <path d="M750,214 C750,270 150,270 150,214" fill="none" stroke="#3ecf8e" stroke-width="3" stroke-dasharray="6 6" marker-end="url(#ah)"/>
+      <text x="450" y="285" fill="#9db3a6" font-size="14">next iteration</text>
+    </g>
+  </svg>
+  <aside class="notes">Build-Measure-Learn maps 1:1 onto Modules 1-3. Point at each box and name the module.</aside>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="kicker">The Progression</div>
+  <h2>Prompt → Command → Skill</h2>
+  <svg viewBox="0 0 900 220" width="900">
+    <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#7bd88f"/></marker></defs>
+    <g font-family="Segoe UI" text-anchor="middle">
+      <rect x="30" y="70" width="230" height="90" rx="14" fill="#12201a" stroke="#2a3d33"/>
+      <text x="145" y="105" fill="#e8f0ea" font-size="22" font-weight="700">Raw Prompt</text>
+      <text x="145" y="132" fill="#9db3a6" font-size="14">type it every time</text>
+      <rect x="330" y="70" width="230" height="90" rx="14" fill="#16241d" stroke="#3ecf8e"/>
+      <text x="445" y="102" fill="#7bd88f" font-size="22" font-weight="700">Command</text>
+      <text x="445" y="129" fill="#9db3a6" font-size="14">.claude/commands/ — a tool</text>
+      <rect x="630" y="70" width="240" height="90" rx="14" fill="#1a2c22" stroke="#7bd88f" stroke-width="2"/>
+      <text x="750" y="102" fill="#7bd88f" font-size="22" font-weight="700">Skill</text>
+      <text x="750" y="129" fill="#9db3a6" font-size="14">.claude/skills/ — expertise</text>
+      <line x1="262" y1="115" x2="326" y2="115" stroke="#7bd88f" stroke-width="3" marker-end="url(#a2)"/>
+      <line x1="562" y1="115" x2="626" y2="115" stroke="#7bd88f" stroke-width="3" marker-end="url(#a2)"/>
+    </g>
+  </svg>
+  <p class="muted" style="margin-top:.5rem">Modules 1–3 build <span class="accent">commands</span>. Module 4 bundles them into a <span class="accent">skill</span>.</p>
+  <aside class="notes">The spine of the day. Modules 1-3 build commands, Module 4 bundles them into a skill. Come back to this diagram at every module boundary.</aside>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="kicker">The Running Case Study</div>
+  <div class="two">
+    <div><h1>Meet Priya 🌿</h1><p class="lead">Former cosmetics chemist launching <span class="accent">GlowEarth</span>, a DTC sustainable skincare brand.</p></div>
+    <div class="card">
+      <p><b>Stage:</b> Pre-revenue, pre-product</p>
+      <p><b>Budget:</b> $3,000 bootstrap</p>
+      <p><b>Team:</b> Solo. No marketer, no analyst, no COO.</p>
+      <p><b>Insight:</b> Greenwashing is rampant — customers can't verify claims.</p>
+      <p class="muted" style="margin-top:.6rem">Her week threads all four modules.</p>
+    </div>
+  </div>
+  <aside class="notes">Priya threads all four modules. Full profile: case-study/founder-profile.md. Keep her concrete — solo, $3k, pre-revenue.</aside>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="kicker">Roadmap</div>
+  <h2>Today — 90 minutes</h2>
+  <table>
+    <tr><th>Time</th><th>Module</th><th>You build 🔧</th></tr>
+    <tr><td>0:00–0:12</td><td>Opening — the overwhelmed founder</td><td>—</td></tr>
+    <tr><td>0:12–0:35</td><td>Module 1 · BUILD</td><td><code>/project:hypothesis</code> (guided)</td></tr>
+    <tr><td>0:35–0:55</td><td>Module 2 · MEASURE</td><td>2 analysis commands (semi-guided)</td></tr>
+    <tr><td>0:55–1:15</td><td>Module 3 · LEARN</td><td>2 decision commands (independent)</td></tr>
+    <tr><td>1:15–1:25</td><td>Module 4 · OPERATE</td><td><code>lean-startup</code> skill (capstone)</td></tr>
+    <tr><td>1:25–1:30</td><td>Closing — next steps</td><td>—</td></tr>
+  </table>
+  <aside class="notes">Timings match README.md. Say out loud: 'the wrench means you build something permanent.' Press T to start the workshop timer.</aside>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="kicker">Module 1 · BUILD</div>
+  <h2>Before you build, hypothesize</h2>
+  <div class="card" style="border-left:4px solid var(--green)">
+    <p class="quote" style="max-width:none;font-size:clamp(1.2rem,2.6vw,2rem)">"We believe <span class="accent">[segment]</span> has <span class="accent">[problem]</span> and will <span class="accent">[behavior]</span> if we offer <span class="accent">[solution]</span>."</p>
+  </div>
+  <p class="muted" style="margin-top:1rem">A hypothesis is a bet you can test — specific, falsifiable, cheap to check.</p>
+  <aside class="notes">The format is falsifiable on purpose. A hypothesis you cannot lose is not a hypothesis.</aside>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="kicker">Module 1 · BUILD</div>
+  <h2>Priya's starting hypothesis</h2>
+  <div class="card">
+    <p style="font-size:clamp(1.1rem,2.2vw,1.7rem)">"We believe <span class="accent">eco-conscious millennials (25-35)</span> will pay a <span class="sand">20% premium</span> for skincare with <span class="accent">verified carbon-neutral shipping</span> and refillable packaging."</p>
+  </div>
+  <p class="muted" style="margin-top:1rem"><b>Riskiest assumption:</b> that shipping is the feature they'll pay extra for. (Spoiler: the data disagrees.)</p>
+  <aside class="notes">Her bet is WRONG and the data kills it in Module 3 — plant that now, do not reveal it. Source: case-study/hypothesis_v1.md.</aside>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <div class="kicker">Exercise 1A · Hands-On</div>
+  <h2>Generate 3 hypotheses</h2>
+  <pre><span class="cmd">claude</span> "I'm launching a DTC sustainable skincare brand targeting
+eco-conscious millennials. Generate 3 testable Lean Startup hypotheses
+in the format: 'We believe [segment] has [problem] and will [behavior]
+if we [solution].' Output a numbered markdown list with a rationale each."</pre>
+  <p class="muted" style="margin-top:1rem">Using your own idea? Swap the first sentence.</p>
+  <aside class="notes">Exercise 1A — exercises/module-1-build/exercise-1a-hypotheses.md. ~4 min. Walk the room. Anyone with their own idea swaps the first sentence.</aside>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <div class="kicker">🔧 Anatomy of a Command</div>
+  <h2>A command is just a markdown file</h2>
+  <div class="two">
+    <pre><span class="c"># .claude/commands/hypothesis.md</span>
+You are a Lean Startup strategist.
+Generate 3 testable hypotheses for:
+
+<span class="v">$ARGUMENTS</span>
+
+Format each as "We believe...".
+
+Project context:
+<span class="cmd">!cat CLAUDE.md</span></pre>
+    <div>
+      <p><b>1. Filename → command name</b><br><span class="muted"><code>hypothesis.md</code> → <code>/project:hypothesis</code></span></p>
+      <p style="margin-top:1rem"><b>2. <span class="v">$ARGUMENTS</span></b><br><span class="muted">whatever you type after the command</span></p>
+      <p style="margin-top:1rem"><b>3. <span class="cmd">!cat</span> — shell injection</b><br><span class="muted">live file contents, no copy-paste</span></p>
+    </div>
+  </div>
+  <aside class="notes">Slow down. This is the first 🔧 beat. Three ideas only: filename becomes the command, $ARGUMENTS takes input, !cat injects live context. Do not add a fourth.</aside>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <div class="kicker">🔧 Exercise 1A-cmd · Guided</div>
+  <h2>Build your first command</h2>
+  <pre><span class="cmd">mkdir</span> -p .claude/commands
+
+<span class="cmd">cat</span> > .claude/commands/hypothesis.md << 'EOF'
+You are a Lean Startup strategist helping an early-stage founder.
+Generate 3 testable hypotheses for the following startup idea:
+
+<span class="v">$ARGUMENTS</span>
+
+Format each as "We believe [segment] has [problem]...". Rationale each.
+
+Project context:
+<span class="cmd">!cat CLAUDE.md</span>
+EOF</pre>
+  <p style="margin-top:.8rem">Test: <code>/project:hypothesis DTC skincare for eco-conscious millennials</code></p>
+  <aside class="notes">Exercise 1A-cmd — GUIDED, you walk every step. ~2 min. Windows users: the PowerShell here-string is in the exercise file. Answer key: reference-commands/hypothesis.md.</aside>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <div class="kicker">Exercise 1B · Hands-On</div>
+  <h2>Customer interview script</h2>
+  <pre><span class="cmd">claude</span> "Based on this hypothesis: '...20% premium for verified
+carbon-neutral products,' generate a 10-question customer discovery
+interview script. Include warm-up, pain-point, solution-fit, and
+willingness-to-pay questions. Format as markdown."</pre>
+  <p class="muted" style="margin-top:1rem"><b>The Mom Test rule:</b> ask about their life and past behavior — never pitch.</p>
+  <aside class="notes">Exercise 1B — exercise-1b-interview-script.md. The Mom Test rule is the point: ask about past behavior, never pitch.</aside>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <div class="kicker">Exercise 1C · Hands-On</div>
+  <h2>Landing page brief</h2>
+  <pre><span class="cmd">claude</span> "Write a landing page copy brief for a DTC sustainable
+skincare brand. Include: 1 headline (max 8 words), 1 subheadline
+(max 20 words), 3 value props with icons, and 1 CTA button.
+Target: eco-conscious millennials. Tone: warm, confident, transparent."</pre>
+  <p class="muted" style="margin-top:1rem">This landing page <span class="accent">is</span> your Build-phase experiment — Module 2 measures it.</p>
+  <aside class="notes">Exercise 1C — exercise-1c-landing-page.md. The landing page IS the experiment; Module 2 measures it.</aside>
+</section>
+
+<!-- 18 -->
+<section class="slide center">
+  <div class="kicker">Show &amp; Tell</div>
+  <h1>What did you build?</h1>
+  <p class="lead">2-3 volunteers share their output — <span class="accent">and their first command file.</span></p>
+  <aside class="notes">2-3 volunteers. Ask to see the command FILE, not just the output — that is the graduation moment.</aside>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <div class="kicker">Module 1 · Recap</div>
+  <h2>In 23 minutes you produced…</h2>
+  <ul style="font-size:clamp(1.2rem,2.4vw,1.8rem);list-style:none;margin-left:0">
+    <li><span class="chk">✅</span> A tested hypothesis</li>
+    <li><span class="chk">✅</span> A 10-question interview script</li>
+    <li><span class="chk">✅</span> A landing page brief</li>
+    <li><span class="chk">✅</span> <span class="accent">Your first reusable command</span> 🔧</li>
+  </ul>
+  <aside class="notes">23 minutes, four artifacts. Name the shift explicitly: prompt user -> toolmaker.</aside>
+</section>
+
+<!-- 20 -->
+<section class="slide center">
+  <div class="kicker">Module 2 · MEASURE</div>
+  <h1 class="quote">Data beats opinions.</h1>
+  <p class="lead" style="margin-top:1.5rem">Let AI be your research analyst.</p>
+  <aside class="notes">Quote slide. Let it sit. Module 2 starts here (0:35).</aside>
+</section>
+
+<!-- 21 -->
+<section class="slide">
+  <div class="kicker">Module 2 · MEASURE</div>
+  <h2>Signal vs. noise</h2>
+  <div class="grid3">
+    <div class="card"><span class="emoji">🔎</span><h3>Search trends</h3><p class="muted">What people are actively looking for.</p></div>
+    <div class="card"><span class="emoji">⭐</span><h3>Review sentiment</h3><p class="muted">Real complaints about incumbents.</p></div>
+    <div class="card"><span class="emoji">📋</span><h3>Survey data</h3><p class="muted">Direct signal from your segment.</p></div>
+  </div>
+  <p class="muted" style="margin-top:1.2rem">New pattern this module: commands that take a <span class="accent">file</span> as input via <code>!cat $ARGUMENTS</code>.</p>
+  <aside class="notes">New pattern this module: commands that take a FILE as input via !cat $ARGUMENTS. Flag it now, they build it on slide 24.</aside>
+</section>
+
+<!-- 22 -->
+<section class="slide">
+  <div class="kicker">Module 2 · MEASURE</div>
+  <h2>Priya's data landscape</h2>
+  <table>
+    <tr><th>Source</th><th>What it is</th><th>Signal type</th></tr>
+    <tr><td><code>competitors.md</code></td><td>5 brands, prices, claims</td><td>Competitive intel</td></tr>
+    <tr><td><code>sample_survey_responses.csv</code></td><td>50 customer responses</td><td>Demand + willingness-to-pay</td></tr>
+    <tr><td><code>sample_reviews.json</code></td><td>20 competitor reviews</td><td>Unmet-need mining</td></tr>
+  </table>
+  <aside class="notes">All three files are real and in the repo. Data dictionary: datasets/data_dictionary.md.</aside>
+</section>
+
+<!-- 23 -->
+<section class="slide">
+  <div class="kicker">Exercise 2A · Hands-On</div>
+  <h2>Competitive analysis</h2>
+  <pre><span class="cmd">claude</span> "Read case-study/competitors.md. Create a competitive
+analysis matrix (Brand, Price, Differentiator, Target, Sustainability
+Claims, Gap). Then write a 200-word landscape summary and identify
+2 underserved niches."</pre>
+  <p class="muted" style="margin-top:1rem">The gap it surfaces: <span class="accent">nobody owns verifiable ingredient traceability.</span></p>
+  <aside class="notes">Exercise 2A — exercise-2a-competitive-analysis.md. The gap it surfaces (nobody owns traceability) is the setup for the Module 3 pivot.</aside>
+</section>
+
+<!-- 24 -->
+<section class="slide">
+  <div class="kicker">🔧 Exercise 2A-cmd · Semi-Guided</div>
+  <h2>Fill in the skeleton</h2>
+  <pre>You are a competitive intelligence analyst.
+Read the following competitor data:
+<span class="cmd">!cat</span> <span class="v">$ARGUMENTS</span>
+
+## Your Task
+<span class="c">[PARTICIPANTS FILL THIS IN]</span>
+
+## Output Format
+1. Comparison matrix: <span class="c">[YOU DEFINE COLUMNS]</span>
+2. 200-word landscape summary
+3. 2 underserved niches</pre>
+  <p style="margin-top:.6rem"><code>!cat $ARGUMENTS</code> → works on <span class="accent">any</span> competitor file.</p>
+  <aside class="notes">Exercise 2A-cmd — SEMI-GUIDED. The ramp starts: you give the skeleton, they fill the task and columns. Do not solve it for them.</aside>
+</section>
+
+<!-- 25 -->
+<section class="slide">
+  <div class="kicker">Exercise 2B · Hands-On</div>
+  <h2>Analyze the survey (50 rows)</h2>
+  <pre><span class="cmd">claude</span> "Read datasets/sample_survey_responses.csv (50 responses).
+Report: demographics, top 3 pain points, willingness-to-pay buckets,
+most requested features, key verbatim quotes. Professional markdown."</pre>
+  <div class="pill-row">
+    <span class="tag">72% want transparency</span>
+    <span class="tag">only 28% care about shipping</span>
+    <span class="tag">60% pay 10-15%, only 22% pay 20%</span>
+  </div>
+  <aside class="notes">Exercise 2B — exercise-2b-survey-analysis.md. These numbers are real: 72/28/60/22 are exact properties of the 50-row CSV, not decoration.</aside>
+</section>
+
+<!-- 26 -->
+<section class="slide">
+  <div class="kicker">🔧 Exercise 2B-cmd · Semi-Guided</div>
+  <h2>Build the survey command</h2>
+  <pre><span class="cmd">cat</span> > .claude/commands/analyze-survey.md << 'EOF'
+You are a market research analyst.
+Analyze the following survey data:
+<span class="cmd">!cat</span> <span class="v">$ARGUMENTS</span>
+
+Report: demographics · top 3 pain points · willingness-to-pay ·
+requested features · verbatim quotes · 3 "So What?" insights.
+<span class="c">[YOU ADD: rules — show the numbers, flag thin data]</span>
+EOF</pre>
+  <p style="margin-top:.6rem">Test: <code>/project:analyze-survey datasets/sample_survey_responses.csv</code></p>
+  <aside class="notes">Exercise 2B-cmd — semi-guided. They add the rules themselves. Answer key: reference-commands/analyze-survey.md.</aside>
+</section>
+
+<!-- 27 -->
+<section class="slide">
+  <div class="kicker">Technique</div>
+  <h2>The "So What?" follow-up + chaining</h2>
+  <div class="two">
+    <div><h3>Iterate</h3><pre><span class="cmd">claude</span> "Based on that analysis, give me
+exactly 3 actionable insights. For each:
+evidence, implication, next step."</pre></div>
+    <div><h3>Chain 🔧</h3><p class="muted">The output of <code>analyze-survey</code> becomes the <span class="accent">input</span> to next module's <code>pivot-decision</code>. Commands chain — mirroring the loop itself.</p></div>
+  </div>
+  <aside class="notes">Chaining preview: analyze-survey output becomes pivot-decision input. The commands chain the same way the loop does.</aside>
+</section>
+
+<!-- 28 -->
+<section class="slide">
+  <div class="kicker">Module 2 · Recap</div>
+  <h2>In 20 minutes…</h2>
+  <ul style="font-size:clamp(1.2rem,2.4vw,1.8rem);list-style:none;margin-left:0">
+    <li><span class="chk">✅</span> Competitive matrix</li>
+    <li><span class="chk">✅</span> Survey report</li>
+    <li><span class="chk">✅</span> Actionable insights</li>
+    <li><span class="chk">✅</span> <span class="accent">2 reusable analysis commands</span> 🔧</li>
+  </ul>
+  <aside class="notes">20 minutes, two analysis commands. Halfway. Check the room's energy here.</aside>
+</section>
+
+<!-- 29 -->
+<section class="slide">
+  <div class="kicker">Module 3 · LEARN</div>
+  <h2>Pivot, persevere, or zoom in?</h2>
+  <div class="grid3">
+    <div class="card"><h3>PERSEVERE</h3><p class="muted">Data supports the bet. Keep going, optimize.</p></div>
+    <div class="card"><h3>PIVOT</h3><p class="muted">Core thesis is wrong. Change direction.</p></div>
+    <div class="card" style="border-color:var(--green)"><h3 class="accent">ZOOM IN</h3><p class="muted">Thesis right, lever wrong. Narrow to what works.</p></div>
+  </div>
+  <aside class="notes">Module 3 (0:55). Three options, and ZOOM IN is the one founders forget exists.</aside>
+</section>
+
+<!-- 30 -->
+<section class="slide">
+  <div class="kicker">Module 3 · LEARN</div>
+  <h2>Priya's dilemma</h2>
+  <div class="two">
+    <div class="card"><h3>Her bet</h3><p>Carbon-neutral shipping is the hero feature. 20% premium.</p></div>
+    <div class="card" style="border-color:var(--amber)"><h3 style="color:var(--amber)">Her data</h3><p>72% want ingredient transparency. Only 28% care about shipping. Only 22% pay 20%.</p></div>
+  </div>
+  <p class="lead" style="margin-top:1.2rem">The data — not her ego — makes the call.</p>
+  <aside class="notes">The tension lands here: her bet vs. her data. Do not resolve it yet — let them feel it.</aside>
+</section>
+
+<!-- 31 -->
+<section class="slide">
+  <div class="kicker">Exercise 3A · Hands-On</div>
+  <h2>Synthesize &amp; decide</h2>
+  <pre><span class="cmd">claude</span> "Acting as my strategic advisor. HYPOTHESIS: 20% premium
+for carbon-neutral skincare. FINDINGS: 72% rank transparency #1; 28%
+rank shipping top-3; 60% pay 10-15%, 22% pay 20%; 0/5 competitors offer
+traceability. Should I PIVOT, PERSEVERE, or ZOOM IN? Structure:
+Recommendation · Evidence · Revised Hypothesis · Risk · Confidence."</pre>
+  <aside class="notes">Exercise 3A — exercise-3a-pivot-or-persevere.md. The findings in the prompt are the real CSV numbers.</aside>
+</section>
+
+<!-- 32 -->
+<section class="slide">
+  <div class="kicker">🔧 Exercise 3A-cmd · Independent</div>
+  <h2>Build it yourself — hints only</h2>
+  <ul>
+    <li>Filename: <code>.claude/commands/pivot-decision.md</code></li>
+    <li>Use <span class="v">$ARGUMENTS</span> for the hypothesis under review</li>
+    <li>Use <code>!cat</code> to inject your Module-2 data files</li>
+    <li>Output: Recommendation · Evidence · Revised Hypothesis · Risk · Confidence</li>
+    <li>Think: what context does the AI need to decide well?</li>
+  </ul>
+  <p class="muted" style="margin-top:1rem">No skeleton. You've built three commands — you've got this.</p>
+  <aside class="notes">Exercise 3A-cmd — INDEPENDENT. Hints only, no skeleton. They have built three commands; let them struggle productively. reference-commands/pivot-decision.md if truly stuck.</aside>
+</section>
+
+<!-- 33 -->
+<section class="slide">
+  <div class="kicker">Priya's AI Recommendation</div>
+  <h2><span class="accent">ZOOM IN</span></h2>
+  <div class="card">
+    <p><b>Revised hypothesis:</b> eco-conscious millennials will pay a <span class="accent">10-15% premium</span> for skincare with <span class="accent">full ingredient traceability via QR codes.</span></p>
+    <p class="muted" style="margin-top:.8rem"><b>Confidence: HIGH</b> — two independent signals agree (survey + competitive gap), and the smaller premium lowers risk.</p>
+  </div>
+  <aside class="notes">The payoff. ZOOM IN, not pivot: thesis right, lever wrong. Two independent signals agree — survey + competitive gap. Full reasoning: case-study/pivot_decision.md.</aside>
+</section>
+
+<!-- 34 -->
+<section class="slide">
+  <div class="kicker">Exercise 3B · Hands-On</div>
+  <h2>Generate a 2-week sprint plan</h2>
+  <pre><span class="cmd">claude</span> "Based on the pivot to 'ingredient transparency,' create a
+2-week sprint plan: updated hypothesis, 5 prioritized tasks (solo founder),
+success metrics, bootstrap budget under $500, risks + mitigations.
+Markdown with a Gantt-style text timeline."</pre>
+  <aside class="notes">Exercise 3B — exercise-3b-sprint-plan.md. Constraints are the point: solo founder, under $500.</aside>
+</section>
+
+<!-- 35 -->
+<section class="slide">
+  <div class="kicker">🔧 Exercise 3B-cmd · Independent</div>
+  <h2>Build it yourself — hints only</h2>
+  <ul>
+    <li>Filename: <code>.claude/commands/sprint-plan.md</code></li>
+    <li><span class="v">$ARGUMENTS</span> = the strategic direction / pivot</li>
+    <li>Bake in your constraints (solo, &lt;$500) so you never re-type them</li>
+    <li>Include: tasks · timeline · budget · metrics · risks</li>
+  </ul>
+  <p class="muted" style="margin-top:1rem">Test: <code>/project:sprint-plan "Pivot to transparency-focused brand"</code></p>
+  <aside class="notes">Exercise 3B-cmd — independent again. Baking constraints into the command means never re-typing them.</aside>
+</section>
+
+<!-- 36 -->
+<section class="slide">
+  <div class="kicker">The Complete Loop</div>
+  <h2>Your command chain = the B-M-L loop</h2>
+  <svg viewBox="0 0 900 130" width="900"><g font-family="JetBrains Mono,monospace" text-anchor="middle">
+    <defs><marker id="a3" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7bd88f"/></marker></defs>
+    <rect x="10" y="45" width="150" height="44" rx="10" fill="#16241d" stroke="#3ecf8e"/><text x="85" y="72" fill="#7bd88f" font-size="14">hypothesis</text>
+    <rect x="200" y="45" width="210" height="44" rx="10" fill="#16241d" stroke="#3ecf8e"/><text x="305" y="66" fill="#7bd88f" font-size="12">competitive-analysis</text><text x="305" y="82" fill="#7bd88f" font-size="12">analyze-survey</text>
+    <rect x="450" y="45" width="170" height="44" rx="10" fill="#16241d" stroke="#3ecf8e"/><text x="535" y="72" fill="#7bd88f" font-size="13">pivot-decision</text>
+    <rect x="660" y="45" width="150" height="44" rx="10" fill="#16241d" stroke="#3ecf8e"/><text x="735" y="72" fill="#7bd88f" font-size="14">sprint-plan</text>
+    <line x1="162" y1="67" x2="196" y2="67" stroke="#7bd88f" stroke-width="2.5" marker-end="url(#a3)"/>
+    <line x1="412" y1="67" x2="446" y2="67" stroke="#7bd88f" stroke-width="2.5" marker-end="url(#a3)"/>
+    <line x1="622" y1="67" x2="656" y2="67" stroke="#7bd88f" stroke-width="2.5" marker-end="url(#a3)"/>
+  </g></svg>
+  <p class="muted center" style="margin-top:.5rem">A complete methodology, codified — and it travels in Git.</p>
+  <aside class="notes">Their four commands ARE the loop. This is the slide that makes the toolkit feel like a system.</aside>
+</section>
+
+<!-- 37 -->
+<section class="slide">
+  <div class="kicker">Module 3 · Recap</div>
+  <h2>In 20 minutes…</h2>
+  <ul style="font-size:clamp(1.2rem,2.4vw,1.8rem);list-style:none;margin-left:0">
+    <li><span class="chk">✅</span> Pivot decision (evidence-based)</li>
+    <li><span class="chk">✅</span> 2-week sprint plan</li>
+    <li><span class="chk">✅</span> Revised hypothesis</li>
+    <li><span class="chk">✅</span> <span class="accent">2 decision commands — built independently!</span> 🔧</li>
+  </ul>
+  <aside class="notes">20 minutes, and they built both commands solo. Say that out loud — they earned it.</aside>
+</section>
+
+<!-- 38 -->
+<section class="slide center">
+  <div class="kicker">Module 4 · OPERATE</div>
+  <h1 class="quote" style="max-width:20ch">Don't hire a COO. Prompt one.</h1>
+  <aside class="notes">Module 4 (1:15). The line the workshop is named for. Pause.</aside>
+</section>
+
+<!-- 39 -->
+<section class="slide">
+  <div class="kicker">Module 4 · OPERATE</div>
+  <h2>From prompts → commands → skills</h2>
+  <div class="two">
+    <div class="card"><h3>Commands = tools</h3><p class="muted">You pick them up and invoke them. Single tasks.</p></div>
+    <div class="card" style="border-color:var(--green)"><h3 class="accent">Skills = expertise</h3><p class="muted">Claude carries them and applies them automatically across a whole domain.</p></div>
+  </div>
+  <aside class="notes">Tools vs. expertise. One sentence each, then move.</aside>
+</section>
+
+<!-- 40 -->
+<section class="slide">
+  <div class="kicker">Module 4 · OPERATE</div>
+  <h2>Commands vs. Skills</h2>
+  <table>
+    <tr><th>Dimension</th><th>Commands</th><th>Skills</th></tr>
+    <tr><td>Trigger</td><td>Manual — <code>/project:x</code></td><td>Auto — context-detected</td></tr>
+    <tr><td>Scope</td><td>One task</td><td>A whole domain</td></tr>
+    <tr><td>Form</td><td>One markdown file</td><td>Folder + SKILL.md + files</td></tr>
+    <tr><td>Best for</td><td>Repetitive on-demand tasks</td><td>Expertise you always want</td></tr>
+    <tr><td>Analogy</td><td>A tool in your toolbox</td><td>A skill in your brain</td></tr>
+  </table>
+  <aside class="notes">The comparison table people photograph. Give them 15 seconds to shoot it.</aside>
+</section>
+
+<!-- 41 -->
+<section class="slide">
+  <div class="kicker">Exercise 4A · Hands-On</div>
+  <h2>SOP generator</h2>
+  <pre><span class="cmd">claude</span> "Create an SOP for processing customer refund requests.
+Include: title + version, purpose/scope, step-by-step process with
+decision points, email templates, escalation criteria, and KPIs.
+Professional markdown." </pre>
+  <p style="margin-top:.8rem">🔧 Save it: <code>cp reference-commands/generate-sop.md .claude/commands/</code></p>
+  <aside class="notes">Exercise 4A — exercise-4a-sop-generator.md. Time is short; copying the reference command is fine here.</aside>
+</section>
+
+<!-- 42 -->
+<section class="slide">
+  <div class="kicker">🔧 Exercise 4B · CAPSTONE</div>
+  <h2>Build the <span class="accent">lean-startup</span> skill</h2>
+  <div class="two">
+    <pre><span class="cmd">mkdir</span> -p .claude/skills/lean-startup/templates
+
+<span class="cmd">cat</span> > .../SKILL.md << 'EOF'
+<span class="c">---
+name: lean-startup
+description: Lean Startup toolkit for
+  Build-Measure-Learn cycles.
+---</span>
+# Lean Startup Skill
+## When to Activate ...
+## Methodology ...
+## Principles ...
+EOF</pre>
+    <div>
+      <p class="muted" style="font-family:monospace;font-size:.95rem">.claude/skills/lean-startup/<br>
+      ├── SKILL.md<br>├── templates/<br>└── examples/</p>
+      <p style="margin-top:1rem">Now Claude <span class="accent">auto-activates</span> your methodology whenever you open this project.</p>
+    </div>
+  </div>
+  <aside class="notes">The CAPSTONE — exercise-4b-capstone-build-skill.md. Folder + SKILL.md + templates + examples. Full bundle: reference-skills/lean-startup/.</aside>
+</section>
+
+<!-- 43 -->
+<section class="slide">
+  <div class="kicker">Power Tips</div>
+  <h2>Four force multipliers</h2>
+  <div class="grid3">
+    <div class="card"><h3>🔗 Chain</h3><p class="muted">Run the whole B-M-L loop, command by command.</p></div>
+    <div class="card"><h3>🧠 Context</h3><p class="muted"><code>!cat CLAUDE.md</code> in every command = shared brain.</p></div>
+    <div class="card"><h3>📦 Version</h3><p class="muted"><code>git add .claude/</code> — your toolkit ships with the repo.</p></div>
+  </div>
+  <div class="card" style="margin-top:1rem"><h3>⚡ Batch</h3><p class="muted">"For each company in competitors.md, generate a one-page brief and save it."</p></div>
+  <aside class="notes">Four multipliers, ~2 min total. Details in exercises/module-4-operate/power-tips.md.</aside>
+</section>
+
+<!-- 44 -->
+<section class="slide">
+  <div class="kicker">Module 4 · Recap</div>
+  <h2>In 10 minutes…</h2>
+  <ul style="font-size:clamp(1.2rem,2.4vw,1.8rem);list-style:none;margin-left:0">
+    <li><span class="chk">✅</span> A complete SOP</li>
+    <li><span class="chk">✅</span> <span class="accent">The lean-startup skill</span> 🔧</li>
+    <li><span class="chk">✅</span> A complete, Git-shareable AI-COO toolkit</li>
+  </ul>
+  <aside class="notes">10 minutes, and the toolkit is complete and Git-shareable.</aside>
+</section>
+
+<!-- 45 -->
+<section class="slide">
+  <div class="kicker">Closing</div>
+  <h2>Priya's week — before &amp; after</h2>
+  <table>
+    <tr><th>Day</th><th>Produced</th><th>Built 🔧</th><th>Time</th></tr>
+    <tr><td>Mon</td><td>Hypotheses, script, landing</td><td><code>hypothesis</code></td><td>15 min</td></tr>
+    <tr><td>Wed</td><td>Competitive + survey, insights</td><td>2 analysis cmds</td><td>20 min</td></tr>
+    <tr><td>Thu</td><td>Pivot decision, sprint plan</td><td>2 decision cmds</td><td>10 min</td></tr>
+    <tr><td>Fri</td><td>SOPs, dashboard</td><td>SOP cmd + skill</td><td>10 min</td></tr>
+  </table>
+  <p class="lead" style="margin-top:1rem"><span class="accent">~55 min AI-assisted</span> vs. <span class="sand">2-4 weeks</span> manual.</p>
+  <aside class="notes">Closing (1:25). ~55 min AI-assisted vs 2-4 weeks manual. This is the ROI slide — say the number.</aside>
+</section>
+
+<!-- 46 -->
+<section class="slide">
+  <div class="kicker">Closing</div>
+  <h2>Your <code>.claude/</code> folder</h2>
+  <pre>.claude/
+├── commands/   <span class="c">← 6 tools you invoke on demand</span>
+│   ├── hypothesis.md
+│   ├── competitive-analysis.md
+│   ├── analyze-survey.md
+│   ├── pivot-decision.md
+│   ├── sprint-plan.md
+│   └── generate-sop.md
+└── skills/
+    └── lean-startup/   <span class="c">← expertise Claude carries</span></pre>
+  <p class="lead" style="margin-top:.8rem">This is your AI-COO's brain. <span class="accent">It lives in Git.</span></p>
+  <aside class="notes">This is the artifact they keep. 'Your co-founder git clones and gets your whole AI-COO on day one.'</aside>
+</section>
+
+<!-- 47 -->
+<section class="slide">
+  <div class="kicker">Closing</div>
+  <h2>5 key takeaways</h2>
+  <ul style="font-size:clamp(1.05rem,2.1vw,1.5rem)">
+    <li><b>AI is a force multiplier</b> — it amplifies your speed, not your judgment</li>
+    <li><b>Framework + AI = superpower</b> — the loop gives AI direction</li>
+    <li><b>Start tonight</b> — pick ONE task, prompt your AI-COO</li>
+    <li><b class="accent">Build tools, not just prompts</b> — commands & skills compound</li>
+    <li><b class="accent">Your .claude/ folder is your startup's operational brain</b></li>
+  </ul>
+  <aside class="notes">Five takeaways. If you are over time, cut to the last two — they are the ones that matter.</aside>
+</section>
+
+<!-- 48 -->
+<section class="slide center">
+  <div class="kicker">Homework</div>
+  <h1 class="quote" style="max-width:24ch">Tonight: pick ONE task. Build a command for it.</h1>
+  <aside class="notes">The single sentence you want them to leave with. Say it, stop, do not add to it.</aside>
+</section>
+
+<!-- 49 -->
+<section class="slide">
+  <div class="kicker">Resources</div>
+  <h2>Take it with you</h2>
+  <div class="two">
+    <div class="card"><h3>📦 The repo</h3><p class="muted">github.com/[your-org]/<br>lean-startup-ai-assistant-workshop</p><p class="muted">Commands, skill, datasets, exercises, playbook.</p></div>
+    <div class="card"><h3>📖 Keep learning</h3><ul class="muted">
+      <li>Claude Code docs — commands & skills</li>
+      <li><i>The Lean Startup</i>, <i>The Mom Test</i>, <i>Zero to One</i></li>
+      <li>Take-home booklet PDF</li></ul></div>
+  </div>
+  <p class="muted center" style="margin-top:1rem">Your commands & skill are local — <code>git push</code> to save them.</p>
+  <aside class="notes"><b>Fill the [your-org] repo URL before presenting</b> — it is still a placeholder here and in workshop-repo/README.md. Booklet + docs links go in the 24h follow-up email.</aside>
+</section>
+
+<!-- 50 -->
+<section class="slide center">
+  <div class="kicker">Thank you</div>
+  <h1>Questions?</h1>
+  <p class="lead">Don't hire a COO. <span class="accent">Prompt one.</span></p>
+  <p class="muted" style="margin-top:1.5rem">Dr. Ibrahim Abualhaol · AI Technical Lead · Ottawa, Canada · 18 July 2026</p>
+  <aside class="notes">Q&A. Last line: their commands and skill are local until they git push. Send them home with that.</aside>
+</section>
+
+</div>
+
+<div class="footer" id="footer">
+  <span>The Lean Startup AI Assistant</span>
+  <span class="pace idle" id="pace">--:-- / 12m · Opening</span>
+  <span id="counter">1 / 50</span>
+</div>
+<div class="nav">
+  <button onclick="go(-1)" aria-label="Previous">‹</button>
+  <button onclick="go(1)" aria-label="Next">›</button>
+</div>
+<div class="hint">← → · <b>S</b> notes · <b>O</b> overview · <b>T</b> timer · <b>?</b> help</div>
+
+<div class="ov" id="ov">
+  <h2>All 50 slides <span class="muted" style="font-size:1rem">— click to jump · <kbd>O</kbd> or <kbd>Esc</kbd> to close</span></h2>
+  <div class="ov-grid" id="ovGrid"></div>
+</div>
+
+<div class="help" id="help">
+  <div class="help-box">
+    <h3>Keyboard</h3>
+    <table>
+      <tr><td><kbd>→</kbd> <kbd>↓</kbd> <kbd>Space</kbd></td><td class="muted">Next slide</td></tr>
+      <tr><td><kbd>←</kbd> <kbd>↑</kbd></td><td class="muted">Previous slide</td></tr>
+      <tr><td><kbd>Home</kbd> <kbd>End</kbd></td><td class="muted">First / last slide</td></tr>
+      <tr><td><kbd>F</kbd></td><td class="muted">Fullscreen</td></tr>
+      <tr><td><kbd>S</kbd></td><td class="muted">Speaker notes panel</td></tr>
+      <tr><td><kbd>O</kbd></td><td class="muted">Overview — jump to any slide</td></tr>
+      <tr><td><kbd>T</kbd></td><td class="muted">Start / pause the 90-min timer</td></tr>
+      <tr><td><kbd>R</kbd></td><td class="muted">Reset the timer</td></tr>
+      <tr><td><kbd>?</kbd></td><td class="muted">This help</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td class="muted">Close overlays</td></tr>
+    </table>
+    <p class="muted" style="font-size:.85rem;margin-top:1rem">The timer turns amber when you run past a module's slot.
+    Slot times come from the roadmap on slide 10.</p>
+  </div>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const counter=document.getElementById('counter');
+  const progress=document.getElementById('progress');
+  const paceEl=document.getElementById('pace');
+  const body=document.body;
+
+  // Module slots mirror the roadmap on slide 10 and the table in workshop-repo/README.md.
+  const PHASES=[
+    {n:'Opening',           s:1,  e:10, end:12},
+    {n:'Module 1 · BUILD',  s:11, e:19, end:35},
+    {n:'Module 2 · MEASURE',s:20, e:28, end:55},
+    {n:'Module 3 · LEARN',  s:29, e:37, end:75},
+    {n:'Module 4 · OPERATE',s:38, e:44, end:85},
+    {n:'Closing',           s:45, e:50, end:90}
+  ];
+  const phaseOf=n=>PHASES.find(p=>n>=p.s&&n<=p.e)||PHASES[PHASES.length-1];
+  const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    counter.textContent=(i+1)+' / '+slides.length;
+    progress.style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+    [...document.querySelectorAll('.ov-item')].forEach((el,k)=>el.classList.toggle('cur',k===i));
+    renderPace();
+  }
+  function go(d){show(i+d)}
+
+  /* ---- 90-minute pacing timer ---- */
+  let acc=0,last=null,running=false;
+  function renderPace(){
+    const p=phaseOf(i+1), m=acc/60000;
+    const mm=Math.floor(m), ss=Math.floor((m-mm)*60);
+    const t=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');
+    paceEl.textContent=(acc||running?t:'--:--')+' / '+p.end+'m · '+p.n;
+    paceEl.className='pace'+(m>p.end?' over':'')+(running?'':' idle');
+  }
+  setInterval(()=>{
+    const now=Date.now();
+    if(running&&last)acc+=now-last;
+    last=now;
+    if(running)renderPace();
+  },1000);
+
+  /* ---- overview ---- */
+  document.getElementById('ovGrid').innerHTML=slides.map((s,k)=>{
+    const h=s.querySelector('h1,h2'), kick=s.querySelector('.kicker');
+    const title=(h?h.textContent:(kick?kick.textContent:'—')).trim().replace(/\s+/g,' ').slice(0,58);
+    return '<div class="ov-item" data-k="'+k+'"><div class="ov-num">'+(k+1)+
+           '</div><div class="ov-ph">'+esc(phaseOf(k+1).n.replace(/^Module (\d).*/,'M$1'))+
+           '</div><div class="ov-t">'+esc(title)+'</div></div>';
+  }).join('');
+  document.querySelectorAll('.ov-item').forEach(el=>el.addEventListener('click',()=>{
+    show(+el.dataset.k); body.classList.remove('ov-on');
+  }));
+
+  document.addEventListener('keydown',e=>{
+    const k=e.key;
+    if(k==='Escape'){body.classList.remove('ov-on','help-on');return;}
+    if(k==='?'||k==='h'||k==='H'){body.classList.toggle('help-on');body.classList.remove('ov-on');e.preventDefault();return;}
+    if(k==='o'||k==='O'){body.classList.toggle('ov-on');body.classList.remove('help-on');e.preventDefault();return;}
+    if(k==='s'||k==='S'){body.classList.toggle('notes-on');e.preventDefault();return;}
+    if(k==='t'||k==='T'){running=!running;last=Date.now();renderPace();e.preventDefault();return;}
+    if(k==='r'||k==='R'){acc=0;running=false;last=null;renderPace();e.preventDefault();return;}
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(k)){go(1);e.preventDefault();}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){go(-1);e.preventDefault();}
+    else if(k==='Home'){show(0);}
+    else if(k==='End'){show(slides.length-1);}
+    else if(k==='f'||k==='F'){
+      if(!document.fullscreenElement)document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  window.addEventListener('hashchange',()=>{
+    const n=parseInt(location.hash.replace('#',''))||1;
+    if(n-1!==i)show(n-1);
+  });
+  show((parseInt(location.hash.replace('#',''))||1)-1);
+</script>
+</body>
+</html>

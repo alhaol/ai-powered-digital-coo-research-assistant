@@ -1,0 +1,11 @@
+# This directory is intentionally empty.
+#
+# During the workshop, YOU build your commands here:
+#   .claude/commands/hypothesis.md            -> /project:hypothesis
+#   .claude/commands/competitive-analysis.md  -> /project:competitive-analysis
+#   .claude/commands/analyze-survey.md        -> /project:analyze-survey
+#   .claude/commands/pivot-decision.md        -> /project:pivot-decision
+#   .claude/commands/sprint-plan.md           -> /project:sprint-plan
+#   .claude/commands/generate-sop.md          -> /project:generate-sop
+#
+# Reference implementations live in ../../reference-commands/ if you get stuck.
