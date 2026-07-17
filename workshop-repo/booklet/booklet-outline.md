@@ -38,9 +38,9 @@ whitespace for notes.
 ## Part 3 — The Case Study (21–23)
 | Page | Content |
 |------|---------|
-| 21 | GlowEarth: full narrative, incl. command-building journey |
+| 21 | Kinsight: full narrative, incl. command-building journey |
 | 22 | Case Study Artifacts — output excerpts + command screenshots |
-| 23 | Lessons from Priya — 6 lessons (incl. "build tools, not prompts") |
+| 23 | Lessons from Ahmad — 7 lessons (incl. "build tools, not prompts" + where AI is the wrong tool) |
 
 ## Part 4 — The Playbook (24–28)
 | Page | Content |

@@ -14,9 +14,9 @@ Analyze the following survey data:
 !cat $ARGUMENTS
 
 Produce a structured report with:
-1. Demographics summary
+1. Demographics summary (include current monthly spend range)
 2. Top 3 pain points (ranked by frequency)
-3. Willingness-to-pay distribution
+3. Willingness-to-pay premium (20%+ / 10-15% / list price only)
 4. Most requested product features
 5. Key verbatim quotes that capture sentiment
 6. 3 actionable "So What?" insights
@@ -35,13 +35,13 @@ Add a "Rules" section that forces rigor, e.g.:
 
 ## Test It
 ```
-/project:analyze-survey datasets/sample_survey_responses.csv
+/project:analyze-survey datasets/parent_survey_responses.csv
 ```
 
 ## 🎯 The Payoff
-You now have **two reusable analysis tools**. How long would running these
-analyses manually take? With commands, it's seconds — and they re-run on every
-new batch of data: `/project:analyze-survey new_survey_batch_2.csv`.
+You now have **two reusable analysis tools**. How long would running these analyses
+manually take? With commands, it's seconds — and they re-run on every new batch of data:
+`/project:analyze-survey new_survey_batch_2.csv`.
 
 ## Preview of Module 3 — Chaining
 The output of `/project:analyze-survey` (a report file) becomes the *input* to

@@ -29,7 +29,7 @@ To verify a deck change actually renders (structure alone won't tell you a slide
 
 ## The most important thing to know
 
-**`workshop-repo/CLAUDE.md` is a fixture, not instructions for you.** It is the GlowEarth case-study context that participants' commands inject at runtime via `!cat CLAUDE.md`. Nearly every file in `reference-commands/` ends with that line, so editing `workshop-repo/CLAUDE.md` silently changes the behavior of all 8 commands and the output every participant sees. Treat it as workshop content — this root file is the one that governs your own behavior.
+**`workshop-repo/CLAUDE.md` is a fixture, not instructions for you.** It is the Kinsight case-study context that participants' commands inject at runtime via `!cat CLAUDE.md`. Nearly every file in `reference-commands/` ends with that line, so editing `workshop-repo/CLAUDE.md` silently changes the behavior of all 8 commands and the output every participant sees. Treat it as workshop content — this root file is the one that governs your own behavior.
 
 ## Architecture: parallel chains, not modules
 
@@ -52,12 +52,17 @@ The workshop's pedagogical arc is **prompt → command → skill**: modules 1–
 
 **`.claude/commands/` and `.claude/skills/` must stay empty** (`.gitkeep` only). Participants build these live; shipping them pre-filled removes the entire point of the workshop. The reference implementations live in `reference-commands/` and `reference-skills/` and are copied in only as a stuck-participant fallback or facilitator demo prep — and per `FACILITATOR-CHECKLIST.md`, removed again before participants clone.
 
-**The survey CSV's headline numbers are load-bearing.** `datasets/sample_survey_responses.csv` was generated deterministically so its statistics match the case-study narrative exactly: 72% rank ingredient transparency #1, 28% have carbon-neutral shipping in their top 3, 60% will pay a 10–15% premium vs. 22% at 20%+, and "QR code to ingredient sourcing" is the most-requested feature. Those figures are hardcoded in eight other files (`case-study/pivot_decision.md`, `datasets/data_dictionary.md`, two exercises, both `reference-skills/lean-startup/examples/`, and two `sample-outputs/`). Regenerating or editing rows invalidates the pivot-decision exercise, whose entire conclusion rests on the 72/28 split. Verify before and after any data change:
+**The dataset numbers are load-bearing.** Both files under `datasets/` are generated deterministically so their statistics match the case-study narrative exactly. From `parent_survey_responses.csv` (n=50): **76%** (38) would not accept an algorithmic risk score, **24%** (12) would, **64%** (32) name "knowing what to say" as their top need, only **12%** (6) name a score, and willingness to pay splits **56%** at $5-10 (28) / **14%** at $20+ (7) / **30%** at $0 (15). From `clinician_interviews.json` (n=20): **85%** (17) name intake & documentation as their top pain, **70%** (14) would pay per seat, **0/20** get structured between-session signal.
+
+Those figures are quoted across roughly a dozen files — `case-study/pivot_decision.md`, `datasets/data_dictionary.md`, several exercises, both `reference-skills/lean-startup/examples/`, four `sample-outputs/`, the deck, the booklet, and both READMEs. The Module 3 pivot rests on two of them agreeing (parents reject the score; clinicians will pay for the alternative), so editing rows silently invalidates the exercise. Verify before and after any data change:
 
 ```bash
-awk -F',' 'NR>1{c++; if($5=="Ingredient transparency") t++; if($6=="Yes") cs++} \
-  END{print t/c*100"% transparency,", cs/c*100"% carbon"}' datasets/sample_survey_responses.csv
+python -c "import csv,collections as c; r=list(csv.DictReader(open('datasets/parent_survey_responses.csv',encoding='utf-8'))); print(len(r), c.Counter(x['wants_risk_score'] for x in r), c.Counter(x['top_need'] for x in r), c.Counter(x['wtp_monthly_usd'] for x in r))"
 ```
+
+Two invariants the generator enforces and any edit must preserve: `_meta.count` in `clinician_interviews.json` equals `len(interviews)`, and no row has `top_need == "A risk score"` while `wants_risk_score == "No"` (a self-contradicting respondent).
+
+**The subject matter carries constraints the code can't enforce.** The case study is a fictional founder in youth mental health. `workshop-repo/CLAUDE.md` holds a standing "triage aid, not a diagnostic — never score a named young person" constraint; because every reference command ends with `!cat CLAUDE.md`, that text reaches every artifact the workshop generates, which is the whole point of putting it there. Don't dilute it. Also: no synthetic data is attributed to minors (parents and clinicians only), all five competitors are invented on `.example.com`, and the SOP exercise deliberately teaches that safeguarding procedures are *not* AI-drafted. Those are pedagogical choices, not decoration.
 
 **`presentation/index.html` mirrors `slides/slide-outline.md`.** The outline is the spec, the HTML the rendering; both assert 50 slides and the deck numbers each `<section class="slide">` with an HTML comment. Adding a slide means updating both, plus the counts stated in `presentation/README.md` and the outline header.
 

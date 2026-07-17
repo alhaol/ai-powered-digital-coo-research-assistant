@@ -16,7 +16,7 @@ Each command's output feeds the next. Run your validated loop end to end:
 ```
 /project:hypothesis "sustainable baby food for busy parents"
 /project:competitive-analysis case-study/competitors.md
-/project:analyze-survey datasets/sample_survey_responses.csv
+/project:analyze-survey datasets/parent_survey_responses.csv
 /project:pivot-decision "Parents will pay 15% premium for organic baby food"
 /project:sprint-plan "Pivot to transparency-focused organic baby food brand"
 ```

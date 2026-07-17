@@ -17,7 +17,7 @@
 ## Try Before You Peek
 Write it in your editor or with `cat > ... << 'EOF'`. Then test:
 ```
-/project:pivot-decision "Eco-conscious millennials will pay a 20% premium for carbon-neutral skincare"
+/project:pivot-decision "Parents will pay a subscription for an AI risk score about their teen"
 ```
 
 ## One Possible Solution (reference — don't peek until you've tried!)

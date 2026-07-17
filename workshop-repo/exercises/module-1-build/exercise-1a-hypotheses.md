@@ -5,8 +5,8 @@
 > *"Before you build anything, make sure you're solving a real problem."*
 
 ## Goal
-Move from a vague idea ("people want sustainable skincare") to 3 precise,
-testable Lean Startup hypotheses.
+Move from a vague idea ("an app that tells parents how their teen is doing") to 3
+precise, testable Lean Startup hypotheses.
 
 ## The Hypothesis Format
 > "We believe **[customer segment]** has **[problem]** and will
@@ -17,10 +17,11 @@ testable Lean Startup hypotheses.
 Open your terminal in the repo and run:
 
 ```bash
-claude "I'm launching a DTC sustainable skincare brand targeting eco-conscious
-millennials. Generate 3 testable Lean Startup hypotheses in the format:
-'We believe [segment] has [problem] and will [behavior] if we [solution].'
-Output as a numbered markdown list with a brief rationale for each."
+claude "I'm building a platform that helps parents and child mental-health
+clinicians support a young person between appointments. Generate 3 testable
+Lean Startup hypotheses in the format: 'We believe [segment] has [problem]
+and will [behavior] if we [solution].' Output as a numbered markdown list
+with a brief rationale for each."
 ```
 
 **Using your own idea?** Replace the first sentence with your startup in one line.
@@ -31,6 +32,16 @@ Output as a numbered markdown list with a brief rationale for each."
 - At least one hypothesis you're a little afraid to test (that's the good one)
 
 See `sample-outputs/hypothesis_v1_example.md` for a reference.
+
+## Watch For This
+Ahmad's instinct — and probably your AI's first draft — is a **risk score**. Notice it.
+It's the obvious answer and it's what a data engineer reaches for. Module 3 is going to
+take it away from him. Finding out on Monday that your favourite hypothesis is wrong is
+the entire point; finding out after you've built it is the expensive way.
+
+> Kinsight is a communication aid, **not a diagnostic**. If a hypothesis has your
+> product diagnosing a child, that isn't a feature — it's a clinical claim, and no
+> survey can validate it.
 
 ## Save Your Output
 ```bash

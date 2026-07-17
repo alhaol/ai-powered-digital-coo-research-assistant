@@ -46,9 +46,10 @@ fi
 
 echo ""
 echo "Workshop files present:"
-check "CLAUDE.md"                            "test -f CLAUDE.md"
-check "datasets/sample_survey_responses.csv" "test -f datasets/sample_survey_responses.csv"
-check "case-study/competitors.md"            "test -f case-study/competitors.md"
+check "CLAUDE.md"                              "test -f CLAUDE.md"
+check "datasets/parent_survey_responses.csv"   "test -f datasets/parent_survey_responses.csv"
+check "datasets/clinician_interviews.json"     "test -f datasets/clinician_interviews.json"
+check "case-study/competitors.md"              "test -f case-study/competitors.md"
 check ".claude/commands directory"           "test -d .claude/commands"
 check ".claude/skills directory"             "test -d .claude/skills"
 check "reference-commands/hypothesis.md"     "test -f reference-commands/hypothesis.md"

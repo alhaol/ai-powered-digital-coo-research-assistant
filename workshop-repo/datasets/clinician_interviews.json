@@ -1,0 +1,209 @@
+{
+  "_meta": {
+    "description": "Synthetic interview notes from 20 child & adolescent mental-health clinicians. Mock data for the Kinsight workshop case study — not real clinicians, not clinical evidence.",
+    "usage": "claude \"Read datasets/clinician_interviews.json. Cluster the pains into themes, rank them by frequency, and identify the top 3 unmet needs a new platform could serve.\"",
+    "count": 20
+  },
+  "interviews": [
+    {
+      "clinician_id": "C001",
+      "role": "Child & adolescent psychotherapist",
+      "setting": "Private practice",
+      "weekly_caseload": 12,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "First session is half paperwork. I'm reconstructing three months of history from a parent's memory."
+    },
+    {
+      "clinician_id": "C002",
+      "role": "School counsellor",
+      "setting": "School district",
+      "weekly_caseload": 15,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "I spend the first 20 minutes asking what changed. That's billable time doing archaeology."
+    },
+    {
+      "clinician_id": "C003",
+      "role": "Clinical psychologist",
+      "setting": "Community clinic",
+      "weekly_caseload": 18,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Parents arrive with a shoebox of worry and no timeline. I have to build one live."
+    },
+    {
+      "clinician_id": "C004",
+      "role": "Family therapist",
+      "setting": "Group practice",
+      "weekly_caseload": 21,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "No",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Documentation eats an hour a day I don't have."
+    },
+    {
+      "clinician_id": "C005",
+      "role": "Psychiatric nurse practitioner",
+      "setting": "Private practice",
+      "weekly_caseload": 24,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "If I had a structured summary before the session I'd get 20 minutes back, every time."
+    },
+    {
+      "clinician_id": "C006",
+      "role": "Child & adolescent psychotherapist",
+      "setting": "School district",
+      "weekly_caseload": 27,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "The intake is the bottleneck. Everything downstream is fine."
+    },
+    {
+      "clinician_id": "C007",
+      "role": "School counsellor",
+      "setting": "Community clinic",
+      "weekly_caseload": 30,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "I'd pay per seat for something that shows me what happened between sessions."
+    },
+    {
+      "clinician_id": "C008",
+      "role": "Clinical psychologist",
+      "setting": "Group practice",
+      "weekly_caseload": 33,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "No",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Parents email me updates. They're unstructured and I can't chart them."
+    },
+    {
+      "clinician_id": "C009",
+      "role": "Family therapist",
+      "setting": "Private practice",
+      "weekly_caseload": 36,
+      "top_pain": "Billing",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "No-shows are my real problem. Nothing else comes close."
+    },
+    {
+      "clinician_id": "C010",
+      "role": "Psychiatric nurse practitioner",
+      "setting": "School district",
+      "weekly_caseload": 13,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "I don't want a risk score from an app — I want the parent's observations, organised."
+    },
+    {
+      "clinician_id": "C011",
+      "role": "Child & adolescent psychotherapist",
+      "setting": "Community clinic",
+      "weekly_caseload": 16,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "No",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "An algorithm flagging a kid as high-risk creates liability I won't take on."
+    },
+    {
+      "clinician_id": "C012",
+      "role": "School counsellor",
+      "setting": "Group practice",
+      "weekly_caseload": 19,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Give me the history in a format I can paste into the chart and I'm sold."
+    },
+    {
+      "clinician_id": "C013",
+      "role": "Clinical psychologist",
+      "setting": "Private practice",
+      "weekly_caseload": 22,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Nothing tells me what happened in the six weeks between appointments."
+    },
+    {
+      "clinician_id": "C014",
+      "role": "Family therapist",
+      "setting": "School district",
+      "weekly_caseload": 25,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "The parent is the sensor. Nobody's structuring what they see."
+    },
+    {
+      "clinician_id": "C015",
+      "role": "Psychiatric nurse practitioner",
+      "setting": "Community clinic",
+      "weekly_caseload": 28,
+      "top_pain": "Scheduling & no-shows",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Scheduling across three schools is chaos."
+    },
+    {
+      "clinician_id": "C016",
+      "role": "Child & adolescent psychotherapist",
+      "setting": "Group practice",
+      "weekly_caseload": 31,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "No",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "I've never once wanted a number. I want context."
+    },
+    {
+      "clinician_id": "C017",
+      "role": "School counsellor",
+      "setting": "Private practice",
+      "weekly_caseload": 34,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Half my intake is asking questions the parent already answered on a form somewhere."
+    },
+    {
+      "clinician_id": "C018",
+      "role": "Clinical psychologist",
+      "setting": "School district",
+      "weekly_caseload": 37,
+      "top_pain": "Scheduling & no-shows",
+      "would_pay_per_seat": "Yes",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Billing and insurance coding is where my evenings go."
+    },
+    {
+      "clinician_id": "C019",
+      "role": "Family therapist",
+      "setting": "Community clinic",
+      "weekly_caseload": 14,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "No",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "If it wrote my intake summary and I could edit it, that's a licence I'd renew."
+    },
+    {
+      "clinician_id": "C020",
+      "role": "Psychiatric nurse practitioner",
+      "setting": "Group practice",
+      "weekly_caseload": 17,
+      "top_pain": "Intake & documentation",
+      "would_pay_per_seat": "No",
+      "gets_structured_between_session_signal": "No",
+      "verbatim_comment": "Between-session signal is the gap. Everyone's building dashboards instead."
+    }
+  ]
+}

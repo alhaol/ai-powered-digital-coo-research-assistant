@@ -17,11 +17,27 @@ Just open `index.html` in any modern browser (double-click, or drag it in).
 | **O** | Overview — all 50 slides, click to jump |
 | **T** | Start / pause the 90-minute timer |
 | **R** | Reset the timer |
+| **P** | Export to PDF (slides only) |
+| **Shift + P** | Export to PDF *with* speaker notes |
 | **?** | Key reference |
 | **Esc** | Close overlays |
 
 The current slide is saved in the URL hash, so you can bookmark or reload to the
 same spot.
+
+## PDFs
+Three pre-built PDFs ship in this folder — regenerate them whenever the deck or the
+booklet content changes:
+
+| File | What it is |
+|------|------------|
+| `lean-startup-ai-assistant-deck.pdf` | The 50 slides, 16:9 landscape |
+| `lean-startup-ai-assistant-deck-speaker-notes.pdf` | Same 50 slides with the speaker notes on each page — the facilitator copy |
+| `lean-startup-ai-assistant-booklet.pdf` | The take-home booklet, A5 portrait, light theme for printing |
+
+You don't need the scripts to make your own: press **P** in the deck (or **Shift+P** for
+the notes copy) and choose *Save as PDF* — landscape, background graphics on. The deck's
+own `@media print` block drives both, so the exported file matches what ships here.
 
 ## Speaker Notes & Pacing
 Every slide carries a speaker note (press **S**) — what to say, which exercise file

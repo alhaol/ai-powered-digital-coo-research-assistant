@@ -1,43 +1,63 @@
 # Example Output — Exercise 2A: Competitive Analysis
 
-## GlowEarth Competitive Landscape
+*This is what a strong AI response to `/project:competitive-analysis` looks like.*
+*All five platforms are fictional — teaching example only.*
+
+---
+
+## Kinsight — Competitive Landscape
+
+**Source:** `case-study/competitors.md` · 5 platforms
 
 ### Comparison Matrix
+| Platform | Price Range | Key Differentiator | Target User | Parent/Clinician Reach | Gap / Weakness |
+|----------|-------------|--------------------|-------------|------------------------|----------------|
+| **MoodNest** | $9.99/mo | AI wellbeing score (0–100) | Parents of teens | Parent only | Score with no next step; drives conflict, not action |
+| **ClearPath Health** | $180+/session | Licensed teletherapy | Families in crisis | Clinician only | Parent locked out; clinician still rebuilds history each session |
+| **ParentCompass** | $79 one-time | Communication training | Parents | Parent only | Generic content, not about *your* child; ends with the course |
+| **Solstice Care** | $40/mo + sessions | Matching + AI intake risk flag | Parents seeking care | Both, briefly | Intake happens once at signup; between-sessions stays dark |
+| **CalmClass** | $12k+/yr district | SEL curriculum + dashboard | School districts | Counsellors only | Cohort-level, not child-level; families never touch it |
 
-| Brand | Price Range | Key Differentiator | Target Customer | Sustainability Claims | Gap / Weakness |
-|-------|-------------|--------------------|-----------------|-----------------------|----------------|
-| Verdé Botanics | $28–$46 | "Clean, plant-powered" | Wellness millennials | Carbon-neutral shipping, recyclable | Vague on what "clean" means; no sourcing |
-| Terra & Bloom | $34–$60 | Luxury ritual | Affluent millennials | Carbon-neutral shipping, 1% for planet, glass | Expensive; claims unverifiable |
-| PurelyMade | $18–$29 | Affordable, short lists | Budget Gen Z | Recyclable packaging | Competes on price, not proof |
-| RootSource | $40–$72 | Sourcing *story* | High-income eco | Carbon-neutral, regenerative story | Narrative, not verifiable data; pricey |
-| EverLeaf Co. | $22–$38 | Refill system | Eco millennials | Refillable packaging | No ingredient sourcing data |
+### The Landscape in 200 Words
 
-### Competitive Landscape Summary (200 words)
+The market splits cleanly down the middle, and nobody crosses it. Parent-facing products
+(MoodNest, ParentCompass) never touch a clinician. Clinician-facing products (ClearPath,
+CalmClass) never touch a parent. Solstice Care is the only platform reaching both — and
+only for the length of a signup form.
 
-The category competes almost entirely on two axes: **price** (PurelyMade at the
-bottom, RootSource and Terra & Bloom at the top) and **shipping/packaging green
-claims**. Three of five brands lead with carbon-neutral shipping — it has become
-table stakes, not a differentiator. Packaging (refills, glass, recyclable) is the
-second crowded axis, owned most clearly by EverLeaf.
+The axis everyone competes on is **the score**. Three of five ship some flavour of AI
+rating or risk flag: MoodNest's 0–100 wellbeing number, Solstice's intake risk flag, and
+CalmClass's cohort dashboard. It is the most crowded and least differentiated feature in
+the category, and the field evidence against it is visible in MoodNest's own reviews — a
+parent sees 42/100, panics, and still has no idea what to do on Tuesday night.
 
-What no one owns is **verifiable ingredient traceability**. RootSource comes
-closest but offers a *narrative* — a sourcing story a customer must take on faith,
-not data they can check. Every brand publishes an ingredient list; none lets a
-customer confirm where those ingredients actually come from. Given that the target
-customer's dominant frustration is greenwashing and unverifiable claims, this is a
-structural gap: incumbents have built their brands on *storytelling*, and
-retrofitting verifiable, per-ingredient data would undercut their own marketing.
+The axis **nobody** owns is the handoff. Zero of five give a clinician structured
+observations from the parent between sessions. Solstice touches intake once and stops;
+everyone else never starts. Clinicians consequently open every appointment doing
+archaeology on a parent's memory, and parents watch their observations evaporate.
+
+The gap is not more measurement. It is **transmission** — moving what the parent already
+sees into the clinician's hands, in a form they can use.
 
 ### 2 Underserved Niches
 
-1. **Provable Ingredient Traceability (QR-level).**
-   *Unmet need:* customers can't verify claims. *Why incumbents won't:* it exposes
-   their vaguer sourcing. *Positioning:* "The only skincare you can fact-check."
+**1. The between-sessions handoff (primary)**
+Structured parent observations, summarized into a clinician-ready intake before the
+appointment. 0/5 competitors serve it. Both sides already feel the pain: parents forget
+what happened, clinicians reconstruct it live. This is the wedge.
 
-2. **Fair-Priced Transparency.**
-   *Unmet need:* traceability today only exists at $60+ (RootSource). *Why
-   incumbents won't:* premium pricing is their model. *Positioning:* "Verified
-   sustainability, without the luxury tax."
+**2. Families not yet in care (secondary)**
+64% of surveyed parents have no clinician. ClearPath and Solstice both assume you've
+already decided to seek care; ParentCompass sells a course and leaves. Nobody supports
+the parent in the months *before* the first appointment — the exact window where
+"what do I say?" is loudest.
+
+---
+
+> **The strategic read:** Ahmad's founding bet was the score. This scan says three of his
+> five rivals already have one — so even if parents wanted it (Exercise 2B says they
+> don't), it would not differentiate him. When your competitive scan and your customer
+> survey independently reject the same feature, that's not a signal to iterate on it.
 
 ---
 

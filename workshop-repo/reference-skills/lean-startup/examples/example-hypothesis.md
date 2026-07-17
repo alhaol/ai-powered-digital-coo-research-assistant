@@ -1,25 +1,37 @@
-# Hypothesis: GlowEarth — Ingredient Transparency
+# Hypothesis: Kinsight — The Clinician Handoff
 
 ## Statement
-"We believe eco-conscious millennials aged 25-35 have no reliable way to verify
-skincare sustainability claims and will pay a 10-15% premium if we offer full
-ingredient traceability via a QR code on every product."
+"We believe child & adolescent clinicians have no structured picture of what happened
+between sessions and will pay a per-seat licence if we offer an intake summary built
+from the parent's own observations — and that parents will sustain those observations
+because they get back a conversation guide, not a score."
 
 ## Rationale
-Greenwashing is rampant in beauty; consumers report distrust of vague "clean"
-and "natural" labels. 72% of our 50-respondent survey ranked ingredient
-transparency as their #1 concern — far above carbon-neutral shipping (28%).
+85% of our 20 clinician interviews named intake and documentation as their top pain, and
+70% said they'd pay a per-seat licence. Meanwhile 0 of 20 get any structured
+between-session signal today, and 0 of 5 competitors connect the two sides. On the
+parent side, 64% of 50 respondents say their top need is knowing what to say — not a
+score, which 76% would refuse outright.
 
 ## Riskiest Assumption
-That transparency alone drives a *purchase*, not just a stated preference.
-People say they value transparency; the test is whether they pay for it.
+That parents sustain the logging habit past week two. Everything downstream depends on
+it: no parent observations means no intake summary, which means nothing for a clinician
+to pay for.
 
 ## Test Plan
-- **Method:** Pre-order landing page with QR-traceability as the hero feature
-- **Sample Size:** 500 ad-driven visitors
-- **Success Criteria:** ≥ 50 pre-orders OR ≥ 200 email signups in 14 days
+- **Method:** 14-day manual pilot over SMS with 10 families. No product, no code —
+  the founder sends the prompts by hand and writes the summaries himself.
+- **Sample Size:** 10 families, plus 5 clinicians reviewing the resulting summaries
+- **Success Criteria:** ≥ 50% of families still checking in on day 14, AND ≥ 3 of 5
+  clinicians say the summary would save them time
 - **Timeline:** 2 weeks
-- **Cost:** $200 Instagram ad spend + $0 page (no-code)
+- **Cost:** $0 tooling + ~$120 in participant thank-you gift cards
+
+## Why This Test and Not a Landing Page
+A landing page measures whether people *say* yes. The load-bearing risk here is whether
+they *keep going* — and only time can measure that. Concierge the whole thing manually
+first; if 10 families won't sustain it with a human doing the work, no amount of product
+will fix that.
 
 ## Status: [x] Untested  [ ] Validated  [ ] Invalidated
 

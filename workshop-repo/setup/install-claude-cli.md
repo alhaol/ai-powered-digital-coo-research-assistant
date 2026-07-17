@@ -51,7 +51,7 @@ cd ai-powered-digital-coo-research-assistant/workshop-repo
 claude "Read CLAUDE.md and tell me, in one sentence, what this project is about."
 ```
 
-If Claude summarizes the GlowEarth startup, you're ready. 🎉
+If Claude summarizes the Kinsight startup, you're ready. 🎉
 
 ## 5. Custom Commands & Skills
 

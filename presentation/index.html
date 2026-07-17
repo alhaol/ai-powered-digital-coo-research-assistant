@@ -58,7 +58,11 @@
   .nav button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;
      width:38px;height:34px;font-size:1rem;cursor:pointer}
   .nav button:hover{border-color:var(--green);color:var(--green2)}
-  .hint{position:absolute;bottom:1.6vh;left:1.4vw;color:var(--muted);font-size:.75rem;z-index:20}
+  /* Single unobtrusive affordance bottom-left; every key lives in the help overlay. */
+  .helpbtn{position:absolute;bottom:1.4vh;left:1.4vw;z-index:20;background:var(--panel);
+     color:var(--muted);border:1px solid var(--line);border-radius:8px;width:34px;height:34px;
+     font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit;line-height:1}
+  .helpbtn:hover{border-color:var(--green);color:var(--green2)}
   .emoji{font-size:clamp(2rem,4vw,3rem)}
   .accent{color:var(--green2)}
   .sand{color:var(--sand)}
@@ -110,6 +114,37 @@
   .pace.idle{opacity:.45}
 
   @media (max-width:820px){.two,.grid3{grid-template-columns:1fr}}
+
+  /* ---- PDF export (P, or Ctrl/Cmd-P -> Save as PDF) ----
+     Every slide becomes one 16:9 landscape page. Add .print-notes on <body>
+     to export the facilitator copy with speaker notes included. */
+  @media print{
+    @page{size:1280px 720px;margin:0}
+    html,body{height:auto;overflow:visible}
+    body{background:var(--bg)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .progress,.nav,.helpbtn,.footer,.ov,.help{display:none!important}
+    .deck{height:auto;width:auto;position:static}
+    .slide{
+      position:relative!important;inset:auto!important;
+      display:flex!important;opacity:1!important;
+      width:1280px;height:720px;padding:52px 76px;
+      page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid;
+    }
+    .slide:last-child{page-break-after:auto;break-after:auto}
+    /* notes are hidden by default in print; body.print-notes brings them back */
+    .notes{display:none!important}
+    body.print-notes .slide{padding-bottom:200px}
+    body.print-notes .notes{
+      display:block!important;position:absolute;left:0;right:0;bottom:0;
+      background:var(--code);border-top:2px solid var(--green);
+      padding:14px 76px 18px;color:var(--muted);font-size:12px;line-height:1.45;max-height:180px;overflow:hidden;
+    }
+    body.print-notes .notes::before{
+      content:"Speaker notes";display:block;color:var(--green);font-size:9px;
+      font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px;
+    }
+    body.print-notes .notes b{color:var(--amber)}
+  }
 </style>
 </head>
 <body>
@@ -126,31 +161,28 @@
 </section>
 
 <!-- 2 -->
-<section class="slide">
+<section class="slide center">
   <div class="kicker">The Problem</div>
-  <div class="two">
-    <div><div class="stat">68%</div><h2 style="margin-top:1rem">of a solo founder's time goes to <span class="accent">operations</span> — not product.</h2></div>
-    <div class="card"><p class="muted">Founders wear every hat — CEO, CTO, CFO, CMO, COO — at once. The cognitive load is crushing, and critical operational work falls through the cracks.</p>
-    <h3 style="margin-top:1rem">What if an AI could be your always-on COO?</h3></div>
-  </div>
-  <aside class="notes">The hook. Land the number, then pause. <b>Source this stat or soften it before presenting</b> — it is currently unattributed in slides/slide-outline.md.</aside>
+  <h1 class="quote" style="max-width:26ch">Your kid is struggling.<br>The appointment is in <span class="accent">three weeks</span>.</h1>
+  <p class="lead" style="margin-top:1.5rem;text-align:center">What do you say <span class="sand">tonight</span>?</p>
+  <aside class="notes">The hook. Say it, then <b>stop talking for three seconds</b> — the silence does the work. Roughly a third of any room has lived some version of this. No stat here on purpose: the old deck claimed "68% of founder time goes to ops" and that number had no source anywhere in the repo. A question needs no citation and lands harder.</aside>
 </section>
 
 <!-- 3 -->
 <section class="slide">
   <div class="kicker">The Idea</div>
-  <h2>What if you had a COO?</h2>
+  <h2>Ahmad is building the answer. Alone.</h2>
   <div class="two">
     <div class="card"><h3>😵 Founder, alone</h3><ul class="muted">
       <li>Re-typing the same prompts</li><li>Weeks lost to research & docs</li>
       <li>Guessing instead of measuring</li><li>Drowning in the ops grind</li></ul></div>
     <div class="card"><h3>🤖 Founder + AI-COO</h3><ul>
       <li>Generates interview scripts & landing copy in minutes</li>
-      <li>Analyzes surveys & competitors instantly</li>
+      <li>Analyzes surveys & clinician interviews instantly</li>
       <li>Recommends pivot-or-persevere with evidence</li>
       <li>Drafts SOPs, models, email sequences</li></ul></div>
   </div>
-  <aside class="notes">Contrast, don't lecture. Left is their Tuesday; right is the rest of the workshop. 30 seconds.</aside>
+  <aside class="notes">Contrast, don't lecture. Left is their Tuesday; right is the rest of the workshop. 30 seconds. Bridge from the hook: a real founder is trying to answer that question, and he has no team.</aside>
 </section>
 
 <!-- 4 -->
@@ -165,9 +197,10 @@
 <section class="slide">
   <div class="kicker">Live Demo — Raw Prompt</div>
   <h2>Messy CSV → market report in 30 seconds</h2>
-  <pre><span class="cmd">claude</span> "Read datasets/sample_survey_responses.csv. Analyze the data and
-produce a report: demographics, top 3 pain points, willingness-to-pay
-distribution, most requested features, and key verbatim quotes.
+  <pre><span class="cmd">claude</span> "Read datasets/parent_survey_responses.csv (50 parents).
+Analyze the data and produce a report: respondent summary, top 3
+concerns, what they say they want most, willingness to pay, and key
+verbatim quotes. Show the count behind every percentage.
 Format as a professional markdown report."</pre>
   <p class="muted" style="margin-top:1.2rem">The audience sees the AI read the file, reason, and write — no spreadsheet, no analyst.</p>
   <aside class="notes"><b>THE most important moment of the workshop</b> (FACILITATOR-CHECKLIST.md). Rehearse until flawless. Use the real CSV from the repo. They must <i>feel</i> messy-CSV-to-report in ~30s. This earns you the next 85 minutes.</aside>
@@ -177,7 +210,7 @@ Format as a professional markdown report."</pre>
 <section class="slide">
   <div class="kicker">Live Demo — The Command 🔧</div>
   <h2>Same output. <span class="accent">One-tenth the typing.</span></h2>
-  <pre><span class="cmd">/project:analyze-survey</span> datasets/sample_survey_responses.csv</pre>
+  <pre><span class="cmd">/project:analyze-survey</span> datasets/parent_survey_responses.csv</pre>
   <p style="margin-top:1.2rem">Identical report — from a reusable command you'll learn to build today.</p>
   <p class="lead" style="margin-top:1rem">Today you won't just <span class="sand">use</span> prompts. You'll <span class="accent">build tools</span>.</p>
   <aside class="notes">The turn: same output, one line. This is the whole thesis — they are not here to use prompts, they are here to build tools. Copy reference-commands/analyze-survey.md into .claude/commands/ beforehand.</aside>
@@ -239,16 +272,16 @@ Format as a professional markdown report."</pre>
 <section class="slide">
   <div class="kicker">The Running Case Study</div>
   <div class="two">
-    <div><h1>Meet Priya 🌿</h1><p class="lead">Former cosmetics chemist launching <span class="accent">GlowEarth</span>, a DTC sustainable skincare brand.</p></div>
+    <div><h1>Meet Ahmad 🌱</h1><p class="lead">Healthcare data engineer building <span class="accent">Kinsight</span> — connecting parents and clinicians between appointments.</p></div>
     <div class="card">
       <p><b>Stage:</b> Pre-revenue, pre-product</p>
-      <p><b>Budget:</b> $3,000 bootstrap</p>
-      <p><b>Team:</b> Solo. No marketer, no analyst, no COO.</p>
-      <p><b>Insight:</b> Greenwashing is rampant — customers can't verify claims.</p>
-      <p class="muted" style="margin-top:.6rem">Her week threads all four modules.</p>
+      <p><b>Budget:</b> $8,000 bootstrap</p>
+      <p><b>Team:</b> Solo. No clinicians, no analyst, no COO.</p>
+      <p><b>Why him:</b> 10 years of EHR plumbing — and a daughter who waited 5 months.</p>
+      <p class="muted" style="margin-top:.6rem">His week threads all four modules.</p>
     </div>
   </div>
-  <aside class="notes">Priya threads all four modules. Full profile: case-study/founder-profile.md. Keep her concrete — solo, $3k, pre-revenue.</aside>
+  <aside class="notes">Ahmad threads all four modules. Full profile: case-study/founder-profile.md. Keep him concrete — solo, $8k, pre-revenue. The detail that matters: he's an <b>engineer</b>. That's why his bet on slide 12 is a score, and it's why the data is about to hurt.</aside>
 </section>
 
 <!-- 10 -->
@@ -281,22 +314,23 @@ Format as a professional markdown report."</pre>
 <!-- 12 -->
 <section class="slide">
   <div class="kicker">Module 1 · BUILD</div>
-  <h2>Priya's starting hypothesis</h2>
+  <h2>Ahmad's starting hypothesis</h2>
   <div class="card">
-    <p style="font-size:clamp(1.1rem,2.2vw,1.7rem)">"We believe <span class="accent">eco-conscious millennials (25-35)</span> will pay a <span class="sand">20% premium</span> for skincare with <span class="accent">verified carbon-neutral shipping</span> and refillable packaging."</p>
+    <p style="font-size:clamp(1.1rem,2.2vw,1.7rem)">"We believe <span class="accent">parents of 11-17 year olds</span> will pay a <span class="sand">monthly subscription</span> for an <span class="accent">AI risk score</span> that tells them how their teen is really doing."</p>
   </div>
-  <p class="muted" style="margin-top:1rem"><b>Riskiest assumption:</b> that shipping is the feature they'll pay extra for. (Spoiler: the data disagrees.)</p>
-  <aside class="notes">Her bet is WRONG and the data kills it in Module 3 — plant that now, do not reveal it. Source: case-study/hypothesis_v1.md.</aside>
+  <p class="muted" style="margin-top:1rem"><b>Riskiest assumption:</b> that a <i>score</i> is what parents want. (Spoiler: the data disagrees.)</p>
+  <aside class="notes">His bet is WRONG and the data kills it in Module 3 — plant that now, do not reveal it. Source: case-study/hypothesis_v1.md. Ask the room: "who thinks this is a good idea?" Plenty of hands. It sounds obviously right, which is the whole point.</aside>
 </section>
 
 <!-- 13 -->
 <section class="slide">
   <div class="kicker">Exercise 1A · Hands-On</div>
   <h2>Generate 3 hypotheses</h2>
-  <pre><span class="cmd">claude</span> "I'm launching a DTC sustainable skincare brand targeting
-eco-conscious millennials. Generate 3 testable Lean Startup hypotheses
-in the format: 'We believe [segment] has [problem] and will [behavior]
-if we [solution].' Output a numbered markdown list with a rationale each."</pre>
+  <pre><span class="cmd">claude</span> "I'm building a platform that helps parents and child
+mental-health clinicians support a young person between appointments.
+Generate 3 testable Lean Startup hypotheses in the format: 'We believe
+[segment] has [problem] and will [behavior] if we [solution].'
+Output a numbered markdown list with a rationale each."</pre>
   <p class="muted" style="margin-top:1rem">Using your own idea? Swap the first sentence.</p>
   <aside class="notes">Exercise 1A — exercises/module-1-build/exercise-1a-hypotheses.md. ~4 min. Walk the room. Anyone with their own idea swaps the first sentence.</aside>
 </section>
@@ -329,20 +363,24 @@ Project context:
 <section class="slide">
   <div class="kicker">🔧 Exercise 1A-cmd · Guided</div>
   <h2>Build your first command</h2>
-  <pre><span class="cmd">mkdir</span> -p .claude/commands
-
-<span class="cmd">cat</span> > .claude/commands/hypothesis.md << 'EOF'
+  <pre><span class="cmd">cat</span> > .claude/commands/hypothesis.md << 'EOF'
 You are a Lean Startup strategist helping an early-stage founder.
 Generate 3 testable hypotheses for the following startup idea:
 
 <span class="v">$ARGUMENTS</span>
 
-Format each as "We believe [segment] has [problem]...". Rationale each.
+Format each as "We believe [segment] has [problem] and will
+[behavior] if we offer [solution]."
+
+For each, also include:
+- <span class="c">Riskiest Assumption</span> — the belief that, if wrong, sinks it
+- <span class="c">Cheapest Test</span> — the fastest way to validate it
+- <span class="c">Success Signal</span> — the result that would confirm it
 
 Project context:
 <span class="cmd">!cat CLAUDE.md</span>
 EOF</pre>
-  <p style="margin-top:.8rem">Test: <code>/project:hypothesis DTC skincare for eco-conscious millennials</code></p>
+  <p style="margin-top:.8rem">Test: <code>/project:hypothesis a parent-clinician mental health platform</code></p>
   <aside class="notes">Exercise 1A-cmd — GUIDED, you walk every step. ~2 min. Windows users: the PowerShell here-string is in the exercise file. Answer key: reference-commands/hypothesis.md.</aside>
 </section>
 
@@ -350,24 +388,25 @@ EOF</pre>
 <section class="slide">
   <div class="kicker">Exercise 1B · Hands-On</div>
   <h2>Customer interview script</h2>
-  <pre><span class="cmd">claude</span> "Based on this hypothesis: '...20% premium for verified
-carbon-neutral products,' generate a 10-question customer discovery
-interview script. Include warm-up, pain-point, solution-fit, and
-willingness-to-pay questions. Format as markdown."</pre>
+  <pre><span class="cmd">claude</span> "Based on this hypothesis: 'parents will pay a subscription
+for an AI risk score about their teen,' generate a 10-question customer
+discovery interview script. Include warm-up, pain-point, solution-fit,
+and willingness-to-pay questions. Format as markdown."</pre>
   <p class="muted" style="margin-top:1rem"><b>The Mom Test rule:</b> ask about their life and past behavior — never pitch.</p>
-  <aside class="notes">Exercise 1B — exercise-1b-interview-script.md. The Mom Test rule is the point: ask about past behavior, never pitch.</aside>
+  <aside class="notes">Exercise 1B — exercise-1b-interview-script.md. The Mom Test rule matters more here than anywhere: ask a worried parent "would you want to know if your child was at risk?" and 100% say yes. You've learned nothing. Ask what they actually did at 2am. Also: they interview <b>parents</b>, never children.</aside>
 </section>
 
 <!-- 17 -->
 <section class="slide">
   <div class="kicker">Exercise 1C · Hands-On</div>
   <h2>Landing page brief</h2>
-  <pre><span class="cmd">claude</span> "Write a landing page copy brief for a DTC sustainable
-skincare brand. Include: 1 headline (max 8 words), 1 subheadline
-(max 20 words), 3 value props with icons, and 1 CTA button.
-Target: eco-conscious millennials. Tone: warm, confident, transparent."</pre>
+  <pre><span class="cmd">claude</span> "Write a landing page copy brief for a platform connecting
+parents and child mental-health clinicians. Include: 1 headline (max 8
+words), 1 subheadline (max 20 words), 3 value props with icons, and
+1 CTA button. Target: parents of 11-17 year olds.
+Tone: calm, credible, <span class="v">never alarmist</span>."</pre>
   <p class="muted" style="margin-top:1rem">This landing page <span class="accent">is</span> your Build-phase experiment — Module 2 measures it.</p>
-  <aside class="notes">Exercise 1C — exercise-1c-landing-page.md. The landing page IS the experiment; Module 2 measures it.</aside>
+  <aside class="notes">Exercise 1C — exercise-1c-landing-page.md. <b>Watch what the AI reaches for.</b> The highest-converting headline here is fear — "Would you know if your child was in crisis?" — and it's a lie about a medical capability aimed at frightened people. If someone's draft does that, put it on screen: finding the line is the exercise. See the rejected copy in sample-outputs/landing_page_brief_example.md.</aside>
 </section>
 
 <!-- 18 -->
@@ -404,9 +443,9 @@ Target: eco-conscious millennials. Tone: warm, confident, transparent."</pre>
   <div class="kicker">Module 2 · MEASURE</div>
   <h2>Signal vs. noise</h2>
   <div class="grid3">
-    <div class="card"><span class="emoji">🔎</span><h3>Search trends</h3><p class="muted">What people are actively looking for.</p></div>
-    <div class="card"><span class="emoji">⭐</span><h3>Review sentiment</h3><p class="muted">Real complaints about incumbents.</p></div>
-    <div class="card"><span class="emoji">📋</span><h3>Survey data</h3><p class="muted">Direct signal from your segment.</p></div>
+    <div class="card"><span class="emoji">📋</span><h3>Parent survey</h3><p class="muted">50 parents — what they say they need.</p></div>
+    <div class="card"><span class="emoji">🩺</span><h3>Clinician interviews</h3><p class="muted">20 clinicians — the other side of the gap.</p></div>
+    <div class="card"><span class="emoji">🔎</span><h3>Competitive scan</h3><p class="muted">5 platforms — what's already crowded.</p></div>
   </div>
   <p class="muted" style="margin-top:1.2rem">New pattern this module: commands that take a <span class="accent">file</span> as input via <code>!cat $ARGUMENTS</code>.</p>
   <aside class="notes">New pattern this module: commands that take a FILE as input via !cat $ARGUMENTS. Flag it now, they build it on slide 24.</aside>
@@ -415,14 +454,15 @@ Target: eco-conscious millennials. Tone: warm, confident, transparent."</pre>
 <!-- 22 -->
 <section class="slide">
   <div class="kicker">Module 2 · MEASURE</div>
-  <h2>Priya's data landscape</h2>
+  <h2>Ahmad's data landscape</h2>
   <table>
     <tr><th>Source</th><th>What it is</th><th>Signal type</th></tr>
-    <tr><td><code>competitors.md</code></td><td>5 brands, prices, claims</td><td>Competitive intel</td></tr>
-    <tr><td><code>sample_survey_responses.csv</code></td><td>50 customer responses</td><td>Demand + willingness-to-pay</td></tr>
-    <tr><td><code>sample_reviews.json</code></td><td>20 competitor reviews</td><td>Unmet-need mining</td></tr>
+    <tr><td><code>competitors.md</code></td><td>5 platforms, prices, features</td><td>Competitive intel</td></tr>
+    <tr><td><code>parent_survey_responses.csv</code></td><td>50 parent responses</td><td>Demand + willingness-to-pay</td></tr>
+    <tr><td><code>clinician_interviews.json</code></td><td>20 clinician interviews</td><td>The other side of the gap</td></tr>
   </table>
-  <aside class="notes">All three files are real and in the repo. Data dictionary: datasets/data_dictionary.md.</aside>
+  <p class="muted" style="margin-top:1rem">Two populations, two files. <span class="accent">Nobody surveyed the kids</span> — parents and clinicians report, minors don't.</p>
+  <aside class="notes">All three files are real and in the repo. Data dictionary: datasets/data_dictionary.md. Worth saying out loud: the datasets are synthetic, and there is deliberately <b>no data attributed to a young person</b>. That's a design choice they should copy in their own research.</aside>
 </section>
 
 <!-- 23 -->
@@ -430,11 +470,14 @@ Target: eco-conscious millennials. Tone: warm, confident, transparent."</pre>
   <div class="kicker">Exercise 2A · Hands-On</div>
   <h2>Competitive analysis</h2>
   <pre><span class="cmd">claude</span> "Read case-study/competitors.md. Create a competitive
-analysis matrix (Brand, Price, Differentiator, Target, Sustainability
-Claims, Gap). Then write a 200-word landscape summary and identify
-2 underserved niches."</pre>
-  <p class="muted" style="margin-top:1rem">The gap it surfaces: <span class="accent">nobody owns verifiable ingredient traceability.</span></p>
-  <aside class="notes">Exercise 2A — exercise-2a-competitive-analysis.md. The gap it surfaces (nobody owns traceability) is the setup for the Module 3 pivot.</aside>
+analysis matrix (Platform, Price, Differentiator, Target User,
+Parent/Clinician Reach, Gap). Then write a 200-word landscape summary
+and identify 2 underserved niches."</pre>
+  <div class="pill-row">
+    <span class="tag">3 of 5 already ship a score</span>
+    <span class="tag">0 of 5 connect parent → clinician</span>
+  </div>
+  <aside class="notes">Exercise 2A — exercise-2a-competitive-analysis.md. The setup for Thursday: <b>3 of 5 rivals already ship a score</b>, so even if parents wanted it, it wouldn't differentiate him. 0 of 5 own the handoff. Don't reveal the survey yet — let the two signals land separately.</aside>
 </section>
 
 <!-- 24 -->
@@ -460,15 +503,16 @@ Read the following competitor data:
 <section class="slide">
   <div class="kicker">Exercise 2B · Hands-On</div>
   <h2>Analyze the survey (50 rows)</h2>
-  <pre><span class="cmd">claude</span> "Read datasets/sample_survey_responses.csv (50 responses).
-Report: demographics, top 3 pain points, willingness-to-pay buckets,
-most requested features, key verbatim quotes. Professional markdown."</pre>
+  <pre><span class="cmd">claude</span> "Read datasets/parent_survey_responses.csv (50 parents).
+Report: respondent summary, top 3 concerns, what they say they want
+most, willingness to pay, key verbatim quotes. Show the count behind
+every percentage. Professional markdown."</pre>
   <div class="pill-row">
-    <span class="tag">72% want transparency</span>
-    <span class="tag">only 28% care about shipping</span>
-    <span class="tag">60% pay 10-15%, only 22% pay 20%</span>
+    <span class="tag">76% would refuse a risk score</span>
+    <span class="tag">64% just want to know what to say</span>
+    <span class="tag">56% pay $5-10, only 14% pay $20+</span>
   </div>
-  <aside class="notes">Exercise 2B — exercise-2b-survey-analysis.md. These numbers are real: 72/28/60/22 are exact properties of the 50-row CSV, not decoration.</aside>
+  <aside class="notes">Exercise 2B — exercise-2b-survey-analysis.md. These numbers are exact row counts of the 50-row CSV, not decoration: 38/50, 32/50, 28/50, 7/50. Let them recompute. <b>This is where Ahmad's bet dies</b> — but don't say it yet, that's slide 30.</aside>
 </section>
 
 <!-- 26 -->
@@ -480,11 +524,12 @@ You are a market research analyst.
 Analyze the following survey data:
 <span class="cmd">!cat</span> <span class="v">$ARGUMENTS</span>
 
-Report: demographics · top 3 pain points · willingness-to-pay ·
-requested features · verbatim quotes · 3 "So What?" insights.
-<span class="c">[YOU ADD: rules — show the numbers, flag thin data]</span>
+Report: respondent summary · top 3 concerns · stated top need ·
+willingness to pay · verbatim quotes · 3 "So What?" insights.
+<span class="c">[YOU ADD: rules — show the counts, flag thin data,
+and say so when preference and willingness-to-pay disagree]</span>
 EOF</pre>
-  <p style="margin-top:.6rem">Test: <code>/project:analyze-survey datasets/sample_survey_responses.csv</code></p>
+  <p style="margin-top:.6rem">Test: <code>/project:analyze-survey datasets/parent_survey_responses.csv</code></p>
   <aside class="notes">Exercise 2B-cmd — semi-guided. They add the rules themselves. Answer key: reference-commands/analyze-survey.md.</aside>
 </section>
 
@@ -529,25 +574,28 @@ evidence, implication, next step."</pre></div>
 <!-- 30 -->
 <section class="slide">
   <div class="kicker">Module 3 · LEARN</div>
-  <h2>Priya's dilemma</h2>
+  <h2>Ahmad's dilemma</h2>
   <div class="two">
-    <div class="card"><h3>Her bet</h3><p>Carbon-neutral shipping is the hero feature. 20% premium.</p></div>
-    <div class="card" style="border-color:var(--amber)"><h3 style="color:var(--amber)">Her data</h3><p>72% want ingredient transparency. Only 28% care about shipping. Only 22% pay 20%.</p></div>
+    <div class="card"><h3>His bet</h3><p>An AI risk score is the hero feature. Parents subscribe.</p></div>
+    <div class="card" style="border-color:var(--amber)"><h3 style="color:var(--amber)">His data</h3><p><b>76%</b> would refuse a score about their own child. Only <b>12%</b> rank one as their top need. <b>64%</b> just want to know what to say.</p></div>
   </div>
-  <p class="lead" style="margin-top:1.2rem">The data — not her ego — makes the call.</p>
-  <aside class="notes">The tension lands here: her bet vs. her data. Do not resolve it yet — let them feel it.</aside>
+  <p class="lead" style="margin-top:1.2rem">The data — not his engineering instinct — makes the call.</p>
+  <aside class="notes">The tension lands here: his bet vs. his data. Do not resolve it yet — let them sit in it. The human beat: he's spent ten years being the person who measures things, and 38 out of 50 parents just told him not to measure their kid.</aside>
 </section>
 
 <!-- 31 -->
 <section class="slide">
   <div class="kicker">Exercise 3A · Hands-On</div>
   <h2>Synthesize &amp; decide</h2>
-  <pre><span class="cmd">claude</span> "Acting as my strategic advisor. HYPOTHESIS: 20% premium
-for carbon-neutral skincare. FINDINGS: 72% rank transparency #1; 28%
-rank shipping top-3; 60% pay 10-15%, 22% pay 20%; 0/5 competitors offer
-traceability. Should I PIVOT, PERSEVERE, or ZOOM IN? Structure:
+  <pre><span class="cmd">claude</span> "Acting as my strategic advisor. HYPOTHESIS: parents pay a
+subscription for an AI risk score. PARENTS (n=50): 76% would refuse a
+score; 12% rank one as their top need; 64% want to know what to say;
+56% pay $5-10, 14% pay $20+. CLINICIANS (n=20): 85% say intake is the
+top pain; 70% would pay per seat; 0/20 get between-session signal.
+MARKET: 3/5 rivals ship a score; 0/5 connect parent to clinician.
+Should I PIVOT, PERSEVERE, or ZOOM IN? Structure:
 Recommendation · Evidence · Revised Hypothesis · Risk · Confidence."</pre>
-  <aside class="notes">Exercise 3A — exercise-3a-pivot-or-persevere.md. The findings in the prompt are the real CSV numbers.</aside>
+  <aside class="notes">Exercise 3A — exercise-3a-pivot-or-persevere.md. Every number in this prompt is a real row count from the repo's data. Push the room: <b>what can this survey NOT tell him?</b> Answer: whether a score would actually work. 50 parents is a market signal, not clinical evidence.</aside>
 </section>
 
 <!-- 32 -->
@@ -567,24 +615,27 @@ Recommendation · Evidence · Revised Hypothesis · Risk · Confidence."</pre>
 
 <!-- 33 -->
 <section class="slide">
-  <div class="kicker">Priya's AI Recommendation</div>
+  <div class="kicker">Ahmad's AI Recommendation</div>
   <h2><span class="accent">ZOOM IN</span></h2>
   <div class="card">
-    <p><b>Revised hypothesis:</b> eco-conscious millennials will pay a <span class="accent">10-15% premium</span> for skincare with <span class="accent">full ingredient traceability via QR codes.</span></p>
-    <p class="muted" style="margin-top:.8rem"><b>Confidence: HIGH</b> — two independent signals agree (survey + competitive gap), and the smaller premium lowers risk.</p>
+    <p><b>Revised hypothesis:</b> <span class="accent">clinicians</span> will pay a per-seat licence for an <span class="accent">intake summary built from the parent's own observations</span> — and parents will sustain it because they get back <span class="accent">a conversation guide, not a score.</span></p>
+    <p class="muted" style="margin-top:.8rem"><b>Confidence: HIGH</b> — three independent signals agree (parents reject it · rivals already have it · clinicians will pay for the alternative). The payer moved, and the riskiest feature is gone.</p>
   </div>
-  <aside class="notes">The payoff. ZOOM IN, not pivot: thesis right, lever wrong. Two independent signals agree — survey + competitive gap. Full reasoning: case-study/pivot_decision.md.</aside>
+  <p class="lead" style="margin-top:1rem">The data didn't say "wrong feature." It said <span class="accent">don't build the diagnostic.</span></p>
+  <aside class="notes">The payoff — <b>slow down here</b>. ZOOM IN, not pivot: thesis right, lever wrong. Land the second lesson explicitly: the riskiest thing to build was also the thing users didn't want and he couldn't responsibly validate. In health those two arrive together. Listening to customers and behaving well pointed the same way — that's luck worth naming, not a law. Full reasoning: case-study/pivot_decision.md.</aside>
 </section>
 
 <!-- 34 -->
 <section class="slide">
   <div class="kicker">Exercise 3B · Hands-On</div>
   <h2>Generate a 2-week sprint plan</h2>
-  <pre><span class="cmd">claude</span> "Based on the pivot to 'ingredient transparency,' create a
-2-week sprint plan: updated hypothesis, 5 prioritized tasks (solo founder),
-success metrics, bootstrap budget under $500, risks + mitigations.
+  <pre><span class="cmd">claude</span> "Based on the zoom-in to 'clinician intake summary from
+parent observations, no risk score,' create a 2-week sprint plan:
+updated hypothesis, 5 prioritized tasks (solo founder), success
+metrics, bootstrap budget under $1,000, risks + mitigations.
 Markdown with a Gantt-style text timeline."</pre>
-  <aside class="notes">Exercise 3B — exercise-3b-sprint-plan.md. Constraints are the point: solo founder, under $500.</aside>
+  <p class="muted" style="margin-top:1rem">The sprint tests the <span class="accent">scary</span> thing: will 10 families still check in on day 14?</p>
+  <aside class="notes">Exercise 3B — exercise-3b-sprint-plan.md. Constraints are the point: solo founder, under $1,000. If their plan opens with "build the MVP," push back — the whole sprint is a manual SMS pilot with 10 families and zero code. You can fake the product; you cannot fake whether people show up on day 14.</aside>
 </section>
 
 <!-- 35 -->
@@ -594,7 +645,7 @@ Markdown with a Gantt-style text timeline."</pre>
   <ul>
     <li>Filename: <code>.claude/commands/sprint-plan.md</code></li>
     <li><span class="v">$ARGUMENTS</span> = the strategic direction / pivot</li>
-    <li>Bake in your constraints (solo, &lt;$500) so you never re-type them</li>
+    <li>Bake in your constraints (solo, &lt;$1,000) so you never re-type them</li>
     <li>Include: tasks · timeline · budget · metrics · risks</li>
   </ul>
   <p class="muted" style="margin-top:1rem">Test: <code>/project:sprint-plan "Pivot to transparency-focused brand"</code></p>
@@ -669,12 +720,14 @@ Markdown with a Gantt-style text timeline."</pre>
 <section class="slide">
   <div class="kicker">Exercise 4A · Hands-On</div>
   <h2>SOP generator</h2>
-  <pre><span class="cmd">claude</span> "Create an SOP for processing customer refund requests.
-Include: title + version, purpose/scope, step-by-step process with
-decision points, email templates, escalation criteria, and KPIs.
-Professional markdown." </pre>
-  <p style="margin-top:.8rem">🔧 Save it: <code>cp reference-commands/generate-sop.md .claude/commands/</code></p>
-  <aside class="notes">Exercise 4A — exercise-4a-sop-generator.md. Time is short; copying the reference command is fine here.</aside>
+  <pre><span class="cmd">claude</span> "Create an SOP for onboarding a new clinic onto the
+platform. Include: title + version, purpose/scope, step-by-step process
+with decision points, email templates, escalation criteria, and KPIs.
+Professional markdown."</pre>
+  <div class="card" style="border-color:var(--amber);margin-top:1rem;padding:.9rem 1.2rem">
+    <p style="font-size:clamp(.9rem,1.5vw,1.15rem)"><span style="color:var(--amber)"><b>Not this way:</b></span> the safeguarding SOP. That one is written with a clinician and a lawyer — never a prompt.</p>
+  </div>
+  <aside class="notes">Exercise 4A — exercise-4a-sop-generator.md. Time is short; copying the reference command is fine. <b>Do not skip the amber box</b> — it's the most important 20 seconds of Module 4. AI is great for ops docs that are cheap to fix. It is the wrong tool where being confidently wrong hurts someone and you can't tell. An LLM will draft a beautiful safeguarding procedure that's wrong in ways a founder cannot see, and it'll sit in the repo looking official.</aside>
 </section>
 
 <!-- 42 -->
@@ -732,7 +785,7 @@ EOF</pre>
 <!-- 45 -->
 <section class="slide">
   <div class="kicker">Closing</div>
-  <h2>Priya's week — before &amp; after</h2>
+  <h2>Ahmad's week — before &amp; after</h2>
   <table>
     <tr><th>Day</th><th>Produced</th><th>Built 🔧</th><th>Time</th></tr>
     <tr><td>Mon</td><td>Hypotheses, script, landing</td><td><code>hypothesis</code></td><td>15 min</td></tr>
@@ -740,8 +793,8 @@ EOF</pre>
     <tr><td>Thu</td><td>Pivot decision, sprint plan</td><td>2 decision cmds</td><td>10 min</td></tr>
     <tr><td>Fri</td><td>SOPs, dashboard</td><td>SOP cmd + skill</td><td>10 min</td></tr>
   </table>
-  <p class="lead" style="margin-top:1rem"><span class="accent">~55 min AI-assisted</span> vs. <span class="sand">2-4 weeks</span> manual.</p>
-  <aside class="notes">Closing (1:25). ~55 min AI-assisted vs 2-4 weeks manual. This is the ROI slide — say the number.</aside>
+  <p class="lead" style="margin-top:1rem"><span class="accent">~55 min AI-assisted</span> vs. <span class="sand">2-4 weeks</span> manual — and he killed his own best idea on Thursday.</p>
+  <aside class="notes">Closing (1:25). ~55 min AI-assisted vs 2-4 weeks manual — say the number. Then the real point: the speed isn't the win. <b>The win is that he found out on Thursday instead of after six months of building the score.</b></aside>
 </section>
 
 <!-- 46 -->
@@ -818,7 +871,7 @@ EOF</pre>
   <button onclick="go(-1)" aria-label="Previous">‹</button>
   <button onclick="go(1)" aria-label="Next">›</button>
 </div>
-<div class="hint">← → · <b>S</b> notes · <b>O</b> overview · <b>T</b> timer · <b>?</b> help</div>
+<button class="helpbtn" onclick="document.body.classList.toggle('help-on')" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">?</button>
 
 <div class="ov" id="ov">
   <h2>All 50 slides <span class="muted" style="font-size:1rem">— click to jump · <kbd>O</kbd> or <kbd>Esc</kbd> to close</span></h2>
@@ -837,11 +890,16 @@ EOF</pre>
       <tr><td><kbd>O</kbd></td><td class="muted">Overview — jump to any slide</td></tr>
       <tr><td><kbd>T</kbd></td><td class="muted">Start / pause the 90-min timer</td></tr>
       <tr><td><kbd>R</kbd></td><td class="muted">Reset the timer</td></tr>
+      <tr><td><kbd>P</kbd></td><td class="muted">Export to PDF (slides only)</td></tr>
+      <tr><td><kbd>Shift</kbd> + <kbd>P</kbd></td><td class="muted">Export to PDF <i>with</i> speaker notes</td></tr>
       <tr><td><kbd>?</kbd></td><td class="muted">This help</td></tr>
       <tr><td><kbd>Esc</kbd></td><td class="muted">Close overlays</td></tr>
     </table>
     <p class="muted" style="font-size:.85rem;margin-top:1rem">The timer turns amber when you run past a module's slot.
     Slot times come from the roadmap on slide 10.</p>
+    <p class="muted" style="font-size:.85rem;margin-top:.5rem"><b>PDF:</b> <kbd>P</kbd> opens your browser's print dialog —
+    choose <i>Save as PDF</i>, landscape, and enable background graphics. A pre-built copy of both the deck and the
+    booklet ships in this folder.</p>
   </div>
 </div>
 
@@ -920,6 +978,13 @@ EOF</pre>
     if(k==='s'||k==='S'){body.classList.toggle('notes-on');e.preventDefault();return;}
     if(k==='t'||k==='T'){running=!running;last=Date.now();renderPace();e.preventDefault();return;}
     if(k==='r'||k==='R'){acc=0;running=false;last=null;renderPace();e.preventDefault();return;}
+    // P = slides only; Shift+P = facilitator copy with speaker notes.
+    if(k==='p'||k==='P'){
+      body.classList.remove('ov-on','help-on');
+      body.classList.toggle('print-notes', e.shiftKey);
+      window.print();
+      e.preventDefault(); return;
+    }
     if(['ArrowRight','ArrowDown',' ','PageDown'].includes(k)){go(1);e.preventDefault();}
     else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){go(-1);e.preventDefault();}
     else if(k==='Home'){show(0);}

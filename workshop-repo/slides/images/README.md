@@ -10,7 +10,7 @@ diagrams. Descriptions below double as design specs.
 |---------------|---------|---------------|
 | `lean-loop-diagram.png` | Build-Measure-Learn loop | A 3-node cycle: BUILD → MEASURE → LEARN → (back to BUILD), each labeled with its AI workflow |
 | `ai-coo-architecture.png` | AI-COO architecture | Terminal/CLI at center reading project files, writing docs, with `.claude/commands` + `.claude/skills` as memory |
-| `before-after-timeline.png` | Before/after timeline | Priya's week: 2-4 weeks manual vs. ~55 min AI-assisted |
+| `before-after-timeline.png` | Before/after timeline | Ahmad's week: 2-4 weeks manual vs. ~55 min AI-assisted |
 | `command-anatomy-diagram.png` | Command file anatomy | `hypothesis.md` annotated: filename→name, `$ARGUMENTS`→input, `!cat`→injection |
 | `skill-anatomy-diagram.png` | Skill folder anatomy | `.claude/skills/lean-startup/` tree: SKILL.md + templates/ + examples/ |
 | `prompt-command-skill-progression.png` | The progression | raw prompt → command (tool) → skill (expertise), left to right |

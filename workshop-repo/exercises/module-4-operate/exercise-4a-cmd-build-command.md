@@ -29,10 +29,13 @@ EOF
 
 ## Test It
 ```
-/project:generate-sop Process a customer refund request
-/project:generate-sop Onboard a new ingredient supplier
-/project:generate-sop Handle a negative product review
+/project:generate-sop Onboard a new clinic to the platform
+/project:generate-sop Handle a parent's data access request
+/project:generate-sop Respond to a clinician reporting a bad summary
 ```
+
+> Keep these operational. A safeguarding or crisis-escalation procedure is **not** a
+> prompt — see the warning in `exercise-4a-sop-generator.md`.
 
 ## 🎯 Notice
 One command, infinite SOPs. This is your 6th and final command — the whole

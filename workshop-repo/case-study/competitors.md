@@ -1,63 +1,76 @@
-# GlowEarth — Competitor Scan (5 Brands)
+# Kinsight — Competitor Scan (5 Platforms)
 
-*Priya's notes on the 5 brands she's been watching. Feed this file to your
+> ⚠️ **Every company below is invented** for this workshop, hence the `.example.com`
+> domains. They are not stand-ins for real products, and nothing here is a claim about
+> any real company.
+
+*Ahmad's notes on the 5 platforms he's been watching. Feed this file to your
 competitive-analysis command:*
 `/project:competitive-analysis case-study/competitors.md`
 
 ---
 
-## 1. Verdé Botanics
-- **URL:** verdebotanics.example.com
-- **Price range:** $28–$46 per product
-- **Positioning:** "Clean, plant-powered skincare"
-- **Sustainability claims:** Carbon-neutral shipping, recyclable packaging
-- **Ingredients:** Publishes an ingredient list, but no sourcing info
-- **Target:** Millennials, wellness-focused
-- **Priya's note:** Big Instagram presence. Vague on what "clean" means.
+## 1. MoodNest
+- **URL:** moodnest.example.com
+- **Price range:** $9.99/month, consumer subscription
+- **Positioning:** "Your teen's mood, tracked"
+- **Headline feature:** Daily mood check-ins with an AI "wellbeing score" (0–100)
+- **Parent tools:** Parent sees the score. No guidance on what to do with it.
+- **Clinician link:** None
+- **Ahmad's note:** Slick, beautiful charts. Reviews say the score causes fights — a
+  parent sees 42/100 and panics, the kid feels surveilled, and nobody knows the next step.
 
-## 2. Terra & Bloom
-- **URL:** terrabloom.example.com
-- **Price range:** $34–$60 per product
-- **Positioning:** "Luxury sustainable ritual"
-- **Sustainability claims:** Carbon-neutral shipping, 1% for the planet, glass bottles
-- **Ingredients:** Full INCI list; no traceability
-- **Target:** Affluent millennials / older Gen Z
-- **Priya's note:** Premium feel. Expensive. Shipping is their headline green claim.
+## 2. ClearPath Health
+- **URL:** clearpathhealth.example.com
+- **Price range:** $180+/session, teletherapy
+- **Positioning:** "Licensed therapists for teens, on video"
+- **Headline feature:** Video sessions with credentialed clinicians
+- **Parent tools:** A billing portal. That's it.
+- **Clinician link:** It *is* the clinician — but nothing flows in from home
+- **Ahmad's note:** Real care, real clinicians. Parents are locked out entirely, and the
+  clinician still opens every session with "so, what's changed?"
 
-## 3. PurelyMade
-- **URL:** purelymade.example.com
-- **Price range:** $18–$29 per product
-- **Positioning:** "Affordable clean beauty for everyone"
-- **Sustainability claims:** Recyclable packaging (no carbon claim)
-- **Ingredients:** Short ingredient lists marketed as the differentiator
-- **Target:** Budget-conscious Gen Z
-- **Priya's note:** Cheapest option. Competes on price, not proof.
+## 3. ParentCompass
+- **URL:** parentcompass.example.com
+- **Price range:** $79 one-time course
+- **Positioning:** "Learn to talk to your teenager"
+- **Headline feature:** Video course library on adolescent communication
+- **Parent tools:** The whole product is parent-facing
+- **Clinician link:** None
+- **Ahmad's note:** Closest to what parents *say* they want — help knowing what to say.
+  But it's generic content, not about *your* kid, and it ends when the course ends.
 
-## 4. RootSource
-- **URL:** rootsource.example.com
-- **Price range:** $40–$72 per product
-- **Positioning:** "Farm-to-face traceable botanicals"
-- **Sustainability claims:** Carbon-neutral shipping, regenerative sourcing story
-- **Ingredients:** Tells a sourcing *story* per hero product, but no per-ingredient data or QR
-- **Target:** High-income, sustainability-obsessed
-- **Priya's note:** Closest to a traceability angle — but it's narrative, not verifiable data. Pricey.
+## 4. Solstice Care
+- **URL:** solsticecare.example.com
+- **Price range:** $40/month + session fees, marketplace
+- **Positioning:** "Find the right therapist for your teen"
+- **Headline feature:** Matching, scheduling, and an AI intake "risk flag" at signup
+- **Parent tools:** Intake form, scheduling
+- **Clinician link:** Referral only — no ongoing data
+- **Ahmad's note:** Closest to a two-sided model, and the only one touching intake. But
+  intake happens **once**, at signup. The six weeks between sessions stay dark.
 
-## 5. EverLeaf Co.
-- **URL:** everleaf.example.com
-- **Price range:** $22–$38 per product
-- **Positioning:** "Refill and reduce"
-- **Sustainability claims:** Refillable packaging system, recyclable pouches
-- **Ingredients:** Standard INCI list; no sourcing data
-- **Target:** Eco-conscious millennials
-- **Priya's note:** Owns the "refill" angle. Nobody yet owns verifiable ingredient traceability.
+## 5. CalmClass
+- **URL:** calmclass.example.com
+- **Price range:** District licence, $12k+/year
+- **Positioning:** "Social-emotional learning, built for schools"
+- **Headline feature:** SEL curriculum + a class-level dashboard
+- **Parent tools:** None — sold to districts
+- **Clinician link:** School counsellors only, aggregate view
+- **Ahmad's note:** Sells to institutions, not families. Counsellors like the dashboard
+  but say it tells them about a *cohort*, never about one kid on a given Tuesday.
 
 ---
 
-## Priya's Quick Read (before AI analysis)
-- **3 of 5** already claim carbon-neutral shipping → it's becoming table stakes.
-- **0 of 5** offer *verifiable, per-ingredient* traceability (QR-level). RootSource
-  tells a story but doesn't prove it.
-- The white space looks like **provable ingredient transparency**, not shipping.
+## Ahmad's Quick Read (before AI analysis)
+- **3 of 5** ship some flavour of AI score or risk flag → it's becoming table stakes,
+  and it's the noisiest, least-differentiated thing in the market.
+- **0 of 5** give a clinician structured observations from the parent **between**
+  sessions. Solstice touches intake once; nobody sustains it.
+- **0 of 5** connect the two sides at all — the parent-facing products have no clinician,
+  and the clinician-facing products lock the parent out.
+- The white space looks like the **handoff**: parent observations, structured, in the
+  clinician's hands before the session. Not another score.
 
 ---
 

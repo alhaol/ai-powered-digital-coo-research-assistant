@@ -23,7 +23,7 @@ file (just swap the specific details for `$ARGUMENTS`).
 Every good entrepreneurial prompt has 5 parts:
 > **Role** + **Context** + **Task** + **Format** + **Constraints**
 
-Example: *"You are a pricing strategist (role). For a bootstrapped DTC skincare
+Example: *"You are a pricing strategist (role). For a bootstrapped youth mental-health
 brand (context), model 3 pricing tiers (task) as a markdown table with rationale
 (format), assuming a 12% sustainability premium and sub-$50 price points
 (constraints)."*

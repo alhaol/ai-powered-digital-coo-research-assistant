@@ -9,21 +9,21 @@
 | # | Title | Content |
 |---|-------|---------|
 | 1 | Title Slide | Workshop title, date, instructor, QR to repo |
-| 2 | The Overwhelmed Founder | Stat: "68% of solo-founder time goes to ops, not product" |
+| 2 | The Hook | Question: "Your kid is struggling. What do you say tonight?" (no fabricated stat) |
 | 3 | What If You Had a COO? | Founder alone vs. Founder + AI-COO |
 | 4 | Live Demo Intro | "Let me show you something." |
 | 5 | Live Demo | [LIVE TERMINAL — messy CSV → report in 30s] |
 | 6 | Live Demo Part 2: The Command | Same result via `/project:analyze-survey` |
 | 7 | The Lean Startup Loop | Build → Measure → Learn diagram |
 | 8 | Prompt → Command → Skill | The progression: raw prompt → command → skill |
-| 9 | Meet Priya | Founder profile card (GlowEarth) |
+| 9 | Meet Ahmad | Founder profile card (Kinsight) |
 | 10 | Today's Roadmap | Agenda with timestamps + 🔧 markers |
 
 ## Section 2 — Module 1: BUILD (Slides 11–19)
 | # | Title | Content |
 |---|-------|---------|
 | 11 | "Before You Build, Hypothesize" | Hypothesis format template |
-| 12 | Priya's Hypothesis | Her specific hypothesis, annotated |
+| 12 | Ahmad's Hypothesis | His specific hypothesis (the risk score), annotated |
 | 13 | Exercise 1A: Prompt | The exact prompt, large monospace |
 | 14 | 🔧 Anatomy of a Command File | Annotated `.claude/commands/hypothesis.md` |
 | 15 | 🔧 Exercise 1A-cmd | Build Your First Command (guided) |
@@ -37,7 +37,7 @@
 |---|-------|---------|
 | 20 | "Data Beats Opinions" | Quote slide |
 | 21 | Signal vs. Noise | Types of market signals |
-| 22 | Priya's Data Landscape | Data sources → signal types |
+| 22 | Ahmad's Data Landscape | Data sources → signal types |
 | 23 | Exercise 2A: Prompt | Competitive analysis prompt |
 | 24 | 🔧 Exercise 2A-cmd: Skeleton | Semi-guided skeleton with fill-ins |
 | 25 | Exercise 2B: Prompt | Survey analysis prompt |
@@ -49,10 +49,10 @@
 | # | Title | Content |
 |---|-------|---------|
 | 29 | "Pivot, Persevere, or Zoom In?" | Decision framework diagram |
-| 30 | Priya's Dilemma | Data vs. hypothesis tension |
+| 30 | Ahmad's Dilemma | Data vs. hypothesis tension |
 | 31 | Exercise 3A: Prompt | Pivot-or-persevere prompt |
 | 32 | 🔧 Exercise 3A-cmd: Build It Yourself | Hints-only (independent) |
-| 33 | Priya's AI Recommendation | ZOOM IN with evidence |
+| 33 | Ahmad's AI Recommendation | ZOOM IN with evidence |
 | 34 | Exercise 3B: Prompt | Sprint plan prompt |
 | 35 | 🔧 Exercise 3B-cmd: Build It Yourself | Hints-only |
 | 36 | The Complete Loop | Command chain: hypothesis → … → sprint-plan |
@@ -72,7 +72,7 @@
 ## Section 6 — Closing (Slides 45–50)
 | # | Title | Content |
 |---|-------|---------|
-| 45 | Priya's Week — Before & After | Timeline comparison |
+| 45 | Ahmad's Week — Before & After | Timeline comparison |
 | 46 | Your `.claude/` Folder | 6 commands + 1 skill; "lives in Git" |
 | 47 | 5 Key Takeaways | Force multiplier · Framework+AI · Start tonight · Build tools · `.claude/` = brain |
 | 48 | Your AI-COO Homework | "Tonight: pick ONE task. Build a command." |

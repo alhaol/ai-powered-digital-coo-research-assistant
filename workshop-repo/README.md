@@ -46,7 +46,7 @@ See `reference-commands/` and `reference-skills/` for facilitator reference impl
 
 ```
 ├── setup/               Install + verify your CLI
-├── case-study/          Priya & GlowEarth — the running story
+├── case-study/          Ahmad & Kinsight — the running story
 ├── datasets/            Mock survey data + competitor list
 ├── exercises/           4 modules, hands-on + command-building
 ├── reference-commands/  Complete command files (facilitator copies)

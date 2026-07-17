@@ -32,8 +32,8 @@ EOF
 ## Your Job
 1. Replace `[PARTICIPANTS FILL THIS IN]` with a clear instruction (e.g. "Map the
    landscape so a solo founder can find a wedge to enter").
-2. Define the matrix columns (hint: Brand, Price, Differentiator, Target,
-   Sustainability Claims, Gap).
+2. Define the matrix columns (hint: Platform, Price, Differentiator, Target User,
+   Parent/Clinician Reach, Gap).
 
 ## Test It
 ```
@@ -41,9 +41,9 @@ EOF
 ```
 
 ## 🎯 The Key Insight
-`!cat $ARGUMENTS` means this ONE command works for skincare competitors, SaaS
-competitors, restaurant competitors — anything. You wrote the analyst's job
-description once; now it runs on any file.
+`!cat $ARGUMENTS` means this ONE command works for health-tech competitors, SaaS
+competitors, restaurant competitors — anything. You wrote the analyst's job description
+once; now it runs on any file.
 
 ## Reference
 Compare with `reference-commands/competitive-analysis.md`.

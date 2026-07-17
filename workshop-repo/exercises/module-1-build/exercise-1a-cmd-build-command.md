@@ -27,7 +27,12 @@ Format each hypothesis as:
 "We believe [customer segment] has [problem] and will [desired behavior]
 if we offer [solution]."
 
-Include a brief rationale for each. Output as a numbered markdown list.
+For each hypothesis, also include:
+- **Riskiest Assumption:** the one belief that, if wrong, sinks the idea
+- **Cheapest Test:** the fastest, lowest-cost way to validate it
+- **Success Signal:** the observable result that would confirm it
+
+Output as a numbered markdown list. Be specific — no generic filler.
 
 Project context:
 !cat CLAUDE.md
@@ -45,13 +50,13 @@ EOF
 ## Step 3 — Test it
 In Claude Code, type:
 ```
-/project:hypothesis DTC sustainable skincare for eco-conscious millennials
+/project:hypothesis a platform connecting parents and clinicians on teen mental health
 ```
 
 ## 🎯 What just happened — the 3 things to remember
 1. **Filename → command name.** `hypothesis.md` becomes `/project:hypothesis`.
 2. **`$ARGUMENTS`** gets replaced with whatever you type after the command — so
-   this works for ANY startup idea, not just skincare.
+   this works for ANY startup idea, not just Ahmad's.
 3. **`!cat CLAUDE.md`** injects your project context automatically. No copy-paste.
 
 > **You just graduated from prompt *user* to prompt *toolmaker*.** Every time you
