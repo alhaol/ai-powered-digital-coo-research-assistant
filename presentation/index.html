@@ -80,7 +80,7 @@
   }
   body.notes-on .notes b{color:var(--amber)}
   body.notes-on .notes code{color:var(--green2);font-size:.9em}
-  body.notes-on .slide{padding-bottom:36vh;justify-content:flex-start;padding-top:8vh}
+  body.notes-on .slide{padding-bottom:36vh}
   body.notes-on .footer{display:none}
 
   /* ---- overview (O) ---- */
@@ -893,9 +893,17 @@ EOF</pre>
   },1000);
 
   /* ---- overview ---- */
+  // <br> carries meaning in the titles, and innerText is empty for hidden slides —
+  // so swap breaks for spaces in a detached node and read textContent off that.
+  const titleOf=el=>{
+    if(!el)return '—';
+    const tmp=document.createElement('div');
+    tmp.innerHTML=el.innerHTML.replace(/<br\s*\/?>/gi,' ');
+    return tmp.textContent.replace(/\s+/g,' ').trim();
+  };
   document.getElementById('ovGrid').innerHTML=slides.map((s,k)=>{
     const h=s.querySelector('h1,h2'), kick=s.querySelector('.kicker');
-    const title=(h?h.textContent:(kick?kick.textContent:'—')).trim().replace(/\s+/g,' ').slice(0,58);
+    const title=titleOf(h||kick).slice(0,58);
     return '<div class="ov-item" data-k="'+k+'"><div class="ov-num">'+(k+1)+
            '</div><div class="ov-ph">'+esc(phaseOf(k+1).n.replace(/^Module (\d).*/,'M$1'))+
            '</div><div class="ov-t">'+esc(title)+'</div></div>';
