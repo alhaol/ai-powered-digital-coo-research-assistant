@@ -1,6 +1,6 @@
 # Example Output — Exercise 1C: Landing Page Brief
 
-*This is what a strong AI response to `/project:landing-page` looks like.*
+*This is what a strong AI response to `/landing-page` looks like.*
 *Synthetic case study — teaching example only.*
 
 ---

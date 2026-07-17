@@ -14,11 +14,11 @@ that I can fill in every Friday."
 ## 2. Command Chaining (run the whole B-M-L loop)
 Each command's output feeds the next. Run your validated loop end to end:
 ```
-/project:hypothesis "sustainable baby food for busy parents"
-/project:competitive-analysis case-study/competitors.md
-/project:analyze-survey datasets/parent_survey_responses.csv
-/project:pivot-decision "Parents will pay 15% premium for organic baby food"
-/project:sprint-plan "Pivot to transparency-focused organic baby food brand"
+/hypothesis "sustainable baby food for busy parents"
+/competitive-analysis case-study/competitors.md
+/analyze-survey datasets/parent_survey_responses.csv
+/pivot-decision "Parents will pay 15% premium for organic baby food"
+/sprint-plan "Pivot to transparency-focused organic baby food brand"
 ```
 
 ## 3. Version Control Everything
@@ -40,7 +40,7 @@ research/competitors/ directory."
 ## Bonus — Global vs. Project Commands
 - **Project** (`.claude/commands/`) — shared via Git, startup-specific.
 - **Global** (`~/.claude/commands/`) — personal, available in every project.
-  Great for your own generic tools like `/user:standup` or `/user:weekly-review`.
+  Great for your own generic tools like `/standup` or `/weekly-review`.
 
 ## Bonus — Grow New Skills
 The `lean-startup` skill is a template. Copy the folder structure to create:

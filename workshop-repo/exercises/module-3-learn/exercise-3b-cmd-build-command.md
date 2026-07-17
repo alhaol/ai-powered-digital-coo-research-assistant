@@ -11,7 +11,7 @@
 
 ## Test It
 ```
-/project:sprint-plan "Pivot to transparency-focused organic baby food brand"
+/sprint-plan "Pivot to transparency-focused organic baby food brand"
 ```
 
 ## One Possible Solution (reference)

@@ -7,7 +7,7 @@
 
 ## The Big Idea
 A command is just a markdown file in `.claude/commands/`. The filename becomes
-the command name. Type `/project:<filename>` and Claude runs it.
+the command name. Type `/<filename>` and Claude runs it.
 
 ## Step 1 — Create the commands directory (if needed)
 ```bash
@@ -50,17 +50,17 @@ EOF
 ## Step 3 — Test it
 In Claude Code, type:
 ```
-/project:hypothesis a platform connecting parents and clinicians on teen mental health
+/hypothesis a platform connecting parents and clinicians on teen mental health
 ```
 
 ## 🎯 What just happened — the 3 things to remember
-1. **Filename → command name.** `hypothesis.md` becomes `/project:hypothesis`.
+1. **Filename → command name.** `hypothesis.md` becomes `/hypothesis`.
 2. **`$ARGUMENTS`** gets replaced with whatever you type after the command — so
    this works for ANY startup idea, not just Ahmad's.
 3. **`!cat CLAUDE.md`** injects your project context automatically. No copy-paste.
 
 > **You just graduated from prompt *user* to prompt *toolmaker*.** Every time you
-> pivot your idea, run `/project:hypothesis` again — zero re-typing.
+> pivot your idea, run `/hypothesis` again — zero re-typing.
 
 ## Reference
 Stuck? Compare with `reference-commands/hypothesis.md`.

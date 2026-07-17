@@ -1,6 +1,6 @@
 # Example Output — Exercise 2A: Competitive Analysis
 
-*This is what a strong AI response to `/project:competitive-analysis` looks like.*
+*This is what a strong AI response to `/competitive-analysis` looks like.*
 *All five platforms are fictional — teaching example only.*
 
 ---

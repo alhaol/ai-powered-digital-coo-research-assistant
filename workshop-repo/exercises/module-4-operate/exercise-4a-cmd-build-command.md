@@ -29,9 +29,9 @@ EOF
 
 ## Test It
 ```
-/project:generate-sop Onboard a new clinic to the platform
-/project:generate-sop Handle a parent's data access request
-/project:generate-sop Respond to a clinician reporting a bad summary
+/generate-sop Onboard a new clinic to the platform
+/generate-sop Handle a parent's data access request
+/generate-sop Respond to a clinician reporting a bad summary
 ```
 
 > Keep these operational. A safeguarding or crisis-escalation procedure is **not** a

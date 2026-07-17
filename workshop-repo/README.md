@@ -27,10 +27,10 @@
 | Module | Theme | Time | Exercises | Commands Built |
 |--------|-------|------|-----------|----------------|
 | Opening | The Overwhelmed Founder | 12 min | Live Demo | — |
-| Module 1 | BUILD — Hypothesis & MVP | 23 min | 3 exercises + 1 command build | `/project:hypothesis` |
-| Module 2 | MEASURE — Market Signals | 20 min | 2 exercises + 2 command builds | `/project:competitive-analysis`, `/project:analyze-survey` |
-| Module 3 | LEARN — Pivot Decisions | 20 min | 2 exercises + 2 command builds | `/project:pivot-decision`, `/project:sprint-plan` |
-| Module 4 | OPERATE — AI-COO Playbook | 10 min | 1 exercise + 1 skill build | `/project:generate-sop` + `lean-startup` skill |
+| Module 1 | BUILD — Hypothesis & MVP | 23 min | 3 exercises + 1 command build | `/hypothesis` |
+| Module 2 | MEASURE — Market Signals | 20 min | 2 exercises + 2 command builds | `/competitive-analysis`, `/analyze-survey` |
+| Module 3 | LEARN — Pivot Decisions | 20 min | 2 exercises + 2 command builds | `/pivot-decision`, `/sprint-plan` |
+| Module 4 | OPERATE — AI-COO Playbook | 10 min | 1 exercise + 1 skill build | `/generate-sop` + `lean-startup` skill |
 | Closing | Next Steps | 5 min | Q&A | — |
 
 ## 🔧 Commands & Skills

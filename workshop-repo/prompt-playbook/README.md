@@ -7,7 +7,7 @@ file (just swap the specific details for `$ARGUMENTS`).
 ## How to Use
 1. **Run as-is:** copy a prompt, edit the bracketed parts, paste into your CLI.
 2. **Turn into a command:** replace the variable part with `$ARGUMENTS`, save into
-   `.claude/commands/<name>.md`, invoke with `/project:<name>`.
+   `.claude/commands/<name>.md`, invoke with `/<name>`.
 3. **Chain them:** feed one prompt's output into the next (see `../exercises/module-4-operate/power-tips.md`).
 
 ## The 5 Domains

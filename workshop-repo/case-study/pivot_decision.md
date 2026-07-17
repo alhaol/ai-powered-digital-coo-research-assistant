@@ -1,7 +1,7 @@
 # Kinsight — Pivot Decision (Module 3 Output)
 
 *Thursday. Ahmad feeds his v1 hypothesis + survey report + competitive analysis into
-`/project:pivot-decision`. This is the AI's structured recommendation.*
+`/pivot-decision`. This is the AI's structured recommendation.*
 
 > ⚠️ Fictional case study, synthetic data. Not clinical guidance.
 

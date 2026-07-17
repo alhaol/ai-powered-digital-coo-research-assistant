@@ -35,16 +35,16 @@ Add a "Rules" section that forces rigor, e.g.:
 
 ## Test It
 ```
-/project:analyze-survey datasets/parent_survey_responses.csv
+/analyze-survey datasets/parent_survey_responses.csv
 ```
 
 ## 🎯 The Payoff
 You now have **two reusable analysis tools**. How long would running these analyses
 manually take? With commands, it's seconds — and they re-run on every new batch of data:
-`/project:analyze-survey new_survey_batch_2.csv`.
+`/analyze-survey new_survey_batch_2.csv`.
 
 ## Preview of Module 3 — Chaining
-The output of `/project:analyze-survey` (a report file) becomes the *input* to
+The output of `/analyze-survey` (a report file) becomes the *input* to
 your `pivot-decision` command next module. Commands chain, mirroring the
 Build-Measure-Learn loop itself.
 

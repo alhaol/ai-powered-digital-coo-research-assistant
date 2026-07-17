@@ -3,12 +3,12 @@
 ## The 6 Commands You Build
 | Command | Does | Example |
 |---------|------|---------|
-| `/project:hypothesis` | 3 testable hypotheses | `/project:hypothesis a parent-clinician mental health platform` |
-| `/project:competitive-analysis` | Competitor matrix from a file | `/project:competitive-analysis case-study/competitors.md` |
-| `/project:analyze-survey` | Structured survey report | `/project:analyze-survey datasets/parent_survey_responses.csv` |
-| `/project:pivot-decision` | Pivot / persevere / zoom-in | `/project:pivot-decision "parents will pay for a risk score"` |
-| `/project:sprint-plan` | 2-week bootstrapped plan | `/project:sprint-plan "zoom in on the clinician handoff"` |
-| `/project:generate-sop` | Standard Operating Procedure | `/project:generate-sop Onboard a new clinic` |
+| `/hypothesis` | 3 testable hypotheses | `/hypothesis a parent-clinician mental health platform` |
+| `/competitive-analysis` | Competitor matrix from a file | `/competitive-analysis case-study/competitors.md` |
+| `/analyze-survey` | Structured survey report | `/analyze-survey datasets/parent_survey_responses.csv` |
+| `/pivot-decision` | Pivot / persevere / zoom-in | `/pivot-decision "parents will pay for a risk score"` |
+| `/sprint-plan` | 2-week bootstrapped plan | `/sprint-plan "zoom in on the clinician handoff"` |
+| `/generate-sop` | Standard Operating Procedure | `/generate-sop Onboard a new clinic` |
 
 ## Command Syntax (the whole language)
 ```markdown
@@ -18,7 +18,7 @@ $ARGUMENTS          ← whatever the user types after the command
 !cat CLAUDE.md      ← injects live shell output into the prompt
 !cat $ARGUMENTS     ← injects the file the user names
 ```
-- **Filename → command name** (`hypothesis.md` → `/project:hypothesis`)
+- **Filename → command name** (`hypothesis.md` → `/hypothesis`)
 - **Project** commands: `.claude/commands/` · **Global**: `~/.claude/commands/`
 
 ## Skill Structure
@@ -34,11 +34,11 @@ $ARGUMENTS          ← whatever the user types after the command
 
 ## Run the Whole Loop
 ```
-/project:hypothesis "your idea"
-/project:competitive-analysis case-study/competitors.md
-/project:analyze-survey datasets/parent_survey_responses.csv
-/project:pivot-decision "your hypothesis"
-/project:sprint-plan "your direction"
+/hypothesis "your idea"
+/competitive-analysis case-study/competitors.md
+/analyze-survey datasets/parent_survey_responses.csv
+/pivot-decision "your hypothesis"
+/sprint-plan "your direction"
 ```
 
 ## Version It

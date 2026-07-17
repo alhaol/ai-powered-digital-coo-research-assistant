@@ -37,7 +37,7 @@ EOF
 
 ## Test It
 ```
-/project:competitive-analysis case-study/competitors.md
+/competitive-analysis case-study/competitors.md
 ```
 
 ## 🎯 The Key Insight

@@ -7,7 +7,7 @@
 > whenever you're doing Lean Startup work in this project.
 
 ## The Difference (one line)
-- **Command:** you type `/project:hypothesis` — *manual, one task*.
+- **Command:** you type `/hypothesis` — *manual, one task*.
 - **Skill:** Claude notices you're doing customer discovery and *automatically*
   applies your methodology — *autonomous, whole domain*.
 

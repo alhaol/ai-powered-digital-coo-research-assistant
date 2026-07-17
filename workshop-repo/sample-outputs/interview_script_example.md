@@ -1,6 +1,6 @@
 # Example Output — Exercise 1B: Customer Interview Script
 
-*This is what a strong AI response to `/project:interview-script` looks like.*
+*This is what a strong AI response to `/interview-script` looks like.*
 *Synthetic case study — teaching example only.*
 
 ---

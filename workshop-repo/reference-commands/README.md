@@ -19,18 +19,18 @@ cp reference-commands/*.md .claude/commands/
 
 | File | Command | Module | What it does |
 |------|---------|--------|--------------|
-| `hypothesis.md` | `/project:hypothesis` | 1 | Generate 3 testable Lean Startup hypotheses |
-| `interview-script.md` | `/project:interview-script` | 1 | Build a 10-question customer discovery script |
-| `landing-page.md` | `/project:landing-page` | 1 | Draft a landing page copy brief |
-| `competitive-analysis.md` | `/project:competitive-analysis` | 2 | Build a competitive matrix from a competitor file |
-| `analyze-survey.md` | `/project:analyze-survey` | 2 | Turn a survey CSV into a structured report |
-| `pivot-decision.md` | `/project:pivot-decision` | 3 | Make a pivot / persevere / zoom-in call |
-| `sprint-plan.md` | `/project:sprint-plan` | 3 | Produce a 2-week bootstrapped sprint plan |
-| `generate-sop.md` | `/project:generate-sop` | 4 | Write a Standard Operating Procedure |
+| `hypothesis.md` | `/hypothesis` | 1 | Generate 3 testable Lean Startup hypotheses |
+| `interview-script.md` | `/interview-script` | 1 | Build a 10-question customer discovery script |
+| `landing-page.md` | `/landing-page` | 1 | Draft a landing page copy brief |
+| `competitive-analysis.md` | `/competitive-analysis` | 2 | Build a competitive matrix from a competitor file |
+| `analyze-survey.md` | `/analyze-survey` | 2 | Turn a survey CSV into a structured report |
+| `pivot-decision.md` | `/pivot-decision` | 3 | Make a pivot / persevere / zoom-in call |
+| `sprint-plan.md` | `/sprint-plan` | 3 | Produce a 2-week bootstrapped sprint plan |
+| `generate-sop.md` | `/generate-sop` | 4 | Write a Standard Operating Procedure |
 
 ## How Commands Work (30-second refresher)
 
-- **Filename → command name.** `hypothesis.md` becomes `/project:hypothesis`.
+- **Filename → command name.** `hypothesis.md` becomes `/hypothesis`.
 - **`$ARGUMENTS`** is replaced with whatever you type after the command.
 - **`!command`** injects live terminal output (e.g. `!cat CLAUDE.md`) into the prompt.
 - **Scope:** `.claude/commands/` is project-level (shared via Git);

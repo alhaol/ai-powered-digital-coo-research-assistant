@@ -1,6 +1,6 @@
 # Example Output — Exercise 1A: Hypotheses
 
-*This is what a strong AI response to `/project:hypothesis` looks like.*
+*This is what a strong AI response to `/hypothesis` looks like.*
 *Synthetic case study — teaching example only.*
 
 ---

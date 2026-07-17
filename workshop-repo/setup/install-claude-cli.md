@@ -56,7 +56,7 @@ If Claude summarizes the Kinsight startup, you're ready. 🎉
 ## 5. Custom Commands & Skills
 
 Claude Code automatically discovers:
-- **Commands** in `.claude/commands/*.md` → invoke with `/project:<name>`
+- **Commands** in `.claude/commands/*.md` → invoke with `/<name>`
 - **Skills** in `.claude/skills/<name>/SKILL.md` → auto-triggered by context
 
 You'll build both during the workshop. No extra configuration needed — just

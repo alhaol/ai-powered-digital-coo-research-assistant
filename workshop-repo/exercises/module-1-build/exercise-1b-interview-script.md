@@ -47,7 +47,7 @@ Finished early? Turn this into `.claude/commands/interview-script.md` using the 
 from Exercise 1A-cmd. Replace the hypothesis with `$ARGUMENTS`:
 ```bash
 cp reference-commands/interview-script.md .claude/commands/  # or build your own
-# Test:  /project:interview-script <your hypothesis here>
+# Test:  /interview-script <your hypothesis here>
 ```
 
 ---

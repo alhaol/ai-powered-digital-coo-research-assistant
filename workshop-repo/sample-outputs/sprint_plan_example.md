@@ -1,6 +1,6 @@
 # Example Output — Exercise 3B: Sprint Plan
 
-*This is what a strong AI response to `/project:sprint-plan` looks like.*
+*This is what a strong AI response to `/sprint-plan` looks like.*
 *Synthetic case study — teaching example only.*
 
 ---

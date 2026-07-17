@@ -1,6 +1,6 @@
 # Example Output — Exercise 4A: Clinic Onboarding SOP
 
-*This is what a strong AI response to `/project:generate-sop` looks like.*
+*This is what a strong AI response to `/generate-sop` looks like.*
 *Synthetic case study — teaching example only.*
 
 ---

@@ -12,7 +12,7 @@ clinicians report; minors do not.
 ## `parent_survey_responses.csv`
 
 50 mock responses from parents of 11–17 year olds. Use it with the survey exercise:
-`/project:analyze-survey datasets/parent_survey_responses.csv`
+`/analyze-survey datasets/parent_survey_responses.csv`
 
 | Column | Type | Description | Values |
 |--------|------|-------------|--------|

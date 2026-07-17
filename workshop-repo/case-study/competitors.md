@@ -6,7 +6,7 @@
 
 *Ahmad's notes on the 5 platforms he's been watching. Feed this file to your
 competitive-analysis command:*
-`/project:competitive-analysis case-study/competitors.md`
+`/competitive-analysis case-study/competitors.md`
 
 ---
 

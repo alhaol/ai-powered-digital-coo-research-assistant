@@ -13,7 +13,7 @@
 | 3 | What If You Had a COO? | Founder alone vs. Founder + AI-COO |
 | 4 | Live Demo Intro | "Let me show you something." |
 | 5 | Live Demo | [LIVE TERMINAL — messy CSV → report in 30s] |
-| 6 | Live Demo Part 2: The Command | Same result via `/project:analyze-survey` |
+| 6 | Live Demo Part 2: The Command | Same result via `/analyze-survey` |
 | 7 | The Lean Startup Loop | Build → Measure → Learn diagram |
 | 8 | Prompt → Command → Skill | The progression: raw prompt → command → skill |
 | 9 | Meet Ahmad | Founder profile card (Kinsight) |

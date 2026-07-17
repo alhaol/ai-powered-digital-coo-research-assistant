@@ -1,6 +1,6 @@
 # Example Output — Exercise 2B: Survey Analysis Report
 
-*This is what a strong AI response to `/project:analyze-survey` looks like.*
+*This is what a strong AI response to `/analyze-survey` looks like.*
 *Synthetic data — teaching example only.*
 
 ---

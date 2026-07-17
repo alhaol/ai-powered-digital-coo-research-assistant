@@ -32,10 +32,10 @@ from *using* prompts to *building* reusable commands and, finally, a bundled ski
 
 | Day | Module | What Ahmad produces | Command / Skill he builds |
 |-----|--------|---------------------|---------------------------|
-| Mon | BUILD | Hypotheses, interview script, landing page brief | `/project:hypothesis` |
-| Wed | MEASURE | Competitive analysis, survey report, insights | `/project:competitive-analysis`, `/project:analyze-survey` |
-| Thu | LEARN | Pivot decision, sprint plan | `/project:pivot-decision`, `/project:sprint-plan` |
-| Fri | OPERATE | SOPs, checklists, dashboard | `/project:generate-sop` + `lean-startup` skill |
+| Mon | BUILD | Hypotheses, interview script, landing page brief | `/hypothesis` |
+| Wed | MEASURE | Competitive analysis, survey report, insights | `/competitive-analysis`, `/analyze-survey` |
+| Thu | LEARN | Pivot decision, sprint plan | `/pivot-decision`, `/sprint-plan` |
+| Fri | OPERATE | SOPs, checklists, dashboard | `/generate-sop` + `lean-startup` skill |
 
 ## The Tension (the moment that makes the story)
 

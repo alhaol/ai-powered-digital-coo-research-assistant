@@ -1,6 +1,6 @@
 # Example Output — Exercise 3A: Pivot Decision
 
-*This is what a strong AI response to `/project:pivot-decision` looks like.*
+*This is what a strong AI response to `/pivot-decision` looks like.*
 *Synthetic data — teaching example only.*
 
 ---

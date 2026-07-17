@@ -65,7 +65,7 @@ templates and examples.
 
 | | Commands | Skills |
 |--|----------|--------|
-| Trigger | Manual (`/project:x`) | Auto (context-detected) |
+| Trigger | Manual (`/x`) | Auto (context-detected) |
 | Scope | One task | A whole domain |
 | Form | One file | Folder + SKILL.md + files |
 | Analogy | A tool you pick up | A skill in your brain |
@@ -94,7 +94,7 @@ in one week using AI, and builds a reusable command library and skill as he goes
 
 | Day | Produced | Built |
 |-----|----------|-------|
-| Mon | Hypotheses, interview script, landing brief (15 min) | `/project:hypothesis` |
+| Mon | Hypotheses, interview script, landing brief (15 min) | `/hypothesis` |
 | Wed | Competitive + survey analysis, insights (20 min) | `analyze-survey`, `competitive-analysis` |
 | Thu | Pivot decision, sprint plan (10 min) | `pivot-decision`, `sprint-plan` |
 | Fri | SOPs, checklists, dashboard (10 min) | `generate-sop` + `lean-startup` skill |

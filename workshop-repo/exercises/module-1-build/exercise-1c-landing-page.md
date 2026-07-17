@@ -46,7 +46,7 @@ anyone converts. Cheap page → real signal → faster learning.
 ## 🔧 Bonus — Save It As a Command
 ```bash
 cp reference-commands/landing-page.md .claude/commands/   # or build your own
-# Test:  /project:landing-page a between-sessions check-in for families
+# Test:  /landing-page a between-sessions check-in for families
 ```
 
 ---

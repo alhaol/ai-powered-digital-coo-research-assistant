@@ -52,7 +52,7 @@ equipped to notice. That document then sits in your repo looking official.
 ## 🔧 Then — Save It As a Command
 ```bash
 cp reference-commands/generate-sop.md .claude/commands/   # or build your own
-# Test:  /project:generate-sop Onboard a new clinic to the platform
+# Test:  /generate-sop Onboard a new clinic to the platform
 ```
 
 ## Next

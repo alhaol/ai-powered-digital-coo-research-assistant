@@ -226,7 +226,7 @@ Format as a professional markdown report."</pre>
 <section class="slide">
   <div class="kicker">Live Demo — The Command 🔧</div>
   <h2>Same output. <span class="accent">One-tenth the typing.</span></h2>
-  <pre><span class="cmd">/project:analyze-survey</span> datasets/parent_survey_responses.csv</pre>
+  <pre><span class="cmd">/analyze-survey</span> datasets/parent_survey_responses.csv</pre>
   <p style="margin-top:1.2rem">Identical report — from a reusable command you'll learn to build today.</p>
   <p class="lead" style="margin-top:1rem">Today you won't just <span class="sand">use</span> prompts. You'll <span class="accent">build tools</span>.</p>
   <aside class="notes">The turn: same output, one line. This is the whole thesis — they are not here to use prompts, they are here to build tools. Copy reference-commands/analyze-survey.md into .claude/commands/ beforehand.</aside>
@@ -307,7 +307,7 @@ Format as a professional markdown report."</pre>
   <table>
     <tr><th>Time</th><th>Module</th><th>You build 🔧</th></tr>
     <tr><td>0:00–0:12</td><td>Opening — the overwhelmed founder</td><td>—</td></tr>
-    <tr><td>0:12–0:35</td><td>Module 1 · BUILD</td><td><code>/project:hypothesis</code> (guided)</td></tr>
+    <tr><td>0:12–0:35</td><td>Module 1 · BUILD</td><td><code>/hypothesis</code> (guided)</td></tr>
     <tr><td>0:35–0:55</td><td>Module 2 · MEASURE</td><td>2 analysis commands (semi-guided)</td></tr>
     <tr><td>0:55–1:15</td><td>Module 3 · LEARN</td><td>2 decision commands (independent)</td></tr>
     <tr><td>1:15–1:25</td><td>Module 4 · OPERATE</td><td><code>lean-startup</code> skill (capstone)</td></tr>
@@ -367,7 +367,7 @@ Format each as "We believe...".
 Project context:
 <span class="cmd">!cat CLAUDE.md</span></pre>
     <div>
-      <p><b>1. Filename → command name</b><br><span class="muted"><code>hypothesis.md</code> → <code>/project:hypothesis</code></span></p>
+      <p><b>1. Filename → command name</b><br><span class="muted"><code>hypothesis.md</code> → <code>/hypothesis</code></span></p>
       <p style="margin-top:1rem"><b>2. <span class="v">$ARGUMENTS</span></b><br><span class="muted">whatever you type after the command</span></p>
       <p style="margin-top:1rem"><b>3. <span class="cmd">!cat</span> — shell injection</b><br><span class="muted">live file contents, no copy-paste</span></p>
     </div>
@@ -396,8 +396,9 @@ For each, also include:
 Project context:
 <span class="cmd">!cat CLAUDE.md</span>
 EOF</pre>
-  <p style="margin-top:.8rem">Test: <code>/project:hypothesis a parent-clinician mental health platform</code></p>
-  <aside class="notes">Exercise 1A-cmd — GUIDED, you walk every step. ~2 min. Windows users: the PowerShell here-string is in the exercise file. Answer key: reference-commands/hypothesis.md.</aside>
+  <p style="margin-top:.8rem">Test: <code>/hypothesis a parent-clinician mental health platform</code></p>
+  <p class="muted" style="margin-top:.4rem">The file must live in <code>.claude/commands/</code>. Rather not type it? Copy the answer key: <code>cp reference-commands/hypothesis.md .claude/commands/</code></p>
+  <aside class="notes">Exercise 1A-cmd — GUIDED, you walk every step. ~2 min. Windows users: the PowerShell here-string is in the exercise file. Point out the file lands in .claude/commands/ — that folder is what makes it a command. Stuck or slow typists: copy the answer key from reference-commands/ instead. Answer key: reference-commands/hypothesis.md.</aside>
 </section>
 
 <!-- 16 -->
@@ -545,7 +546,7 @@ willingness to pay · verbatim quotes · 3 "So What?" insights.
 <span class="c">[YOU ADD: rules — show the counts, flag thin data,
 and say so when preference and willingness-to-pay disagree]</span>
 EOF</pre>
-  <p style="margin-top:.6rem">Test: <code>/project:analyze-survey datasets/parent_survey_responses.csv</code></p>
+  <p style="margin-top:.6rem">Test: <code>/analyze-survey datasets/parent_survey_responses.csv</code></p>
   <aside class="notes">Exercise 2B-cmd — semi-guided. They add the rules themselves. Answer key: reference-commands/analyze-survey.md.</aside>
 </section>
 
@@ -664,7 +665,7 @@ Markdown with a Gantt-style text timeline."</pre>
     <li>Bake in your constraints (solo, &lt;$1,000) so you never re-type them</li>
     <li>Include: tasks · timeline · budget · metrics · risks</li>
   </ul>
-  <p class="muted" style="margin-top:1rem">Test: <code>/project:sprint-plan "Pivot to transparency-focused brand"</code></p>
+  <p class="muted" style="margin-top:1rem">Test: <code>/sprint-plan "Pivot to transparency-focused brand"</code></p>
   <aside class="notes">Exercise 3B-cmd — independent again. Baking constraints into the command means never re-typing them.</aside>
 </section>
 
@@ -723,7 +724,7 @@ Markdown with a Gantt-style text timeline."</pre>
   <h2>Commands vs. Skills</h2>
   <table>
     <tr><th>Dimension</th><th>Commands</th><th>Skills</th></tr>
-    <tr><td>Trigger</td><td>Manual — <code>/project:x</code></td><td>Auto — context-detected</td></tr>
+    <tr><td>Trigger</td><td>Manual — <code>/x</code></td><td>Auto — context-detected</td></tr>
     <tr><td>Scope</td><td>One task</td><td>A whole domain</td></tr>
     <tr><td>Form</td><td>One markdown file</td><td>Folder + SKILL.md + files</td></tr>
     <tr><td>Best for</td><td>Repetitive on-demand tasks</td><td>Expertise you always want</td></tr>
