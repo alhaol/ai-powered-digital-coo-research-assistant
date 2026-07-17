@@ -9,18 +9,31 @@ push and have participants `git clone`. Highlights:
 - **`reference-commands/`** — 8 complete command files (facilitator answer key)
 - **`reference-skills/lean-startup/`** — the full capstone skill bundle
 - **`case-study/`** — Ahmad & Kinsight (profile, hypothesis, competitors, pivot)
-- **`datasets/`** — a 50-row survey CSV (stats match the case study), reviews JSON
+- **`datasets/`** — a 50-row parent survey CSV + 20 clinician interviews JSON
+  (every headline figure is a verified row count)
 - **`exercises/`** — 4 modules, hands-on + guided→independent command-building
 - **`sample-outputs/`** — "what good looks like" for all 8 exercises
 - **`prompt-playbook/`** — 25 reusable founder prompts across 5 domains
 - **`slides/`** — the slide outline + diagram specs
-- **`booklet/`** — 32-page take-home booklet content + a one-page cheat sheet
+- **`booklet/`** — take-home booklet content + a one-page cheat sheet
 - Root: `README.md`, `CLAUDE.md`, `LICENSE`, `.gitignore`, `FACILITATOR-CHECKLIST.md`
 
 ## 📁 `presentation/`
-A self-contained **50-slide HTML deck** (`index.html`) — the rendered version of
-the slide outline. Open it in any browser; arrow keys to navigate, **F** for
-fullscreen. No dependencies, works offline.
+A self-contained **50-slide HTML deck** (`index.html`) — the rendered version of the
+slide outline. One file, everything inlined, no build step, no network. Open it in any
+browser.
+
+Speaker notes on every slide (**S**), a slide overview (**O**), a 90-minute pacing timer
+(**T**), PDF export (**P**), and a real scannable QR to this repo on the title and
+closing slides. Press **?** for all keys.
+
+Three ready-made PDFs ship alongside it:
+
+| File | What it is |
+|------|------------|
+| `lean-startup-ai-assistant-deck.pdf` | 50 slides, 16:9 landscape |
+| `lean-startup-ai-assistant-deck-speaker-notes.pdf` | Same, with speaker notes — the facilitator copy |
+| `lean-startup-ai-assistant-booklet.pdf` | Take-home booklet, A5, light theme for printing |
 
 ---
 
@@ -33,9 +46,10 @@ cp reference-commands/analyze-survey.md .claude/commands/   # prep the live demo
 # open ../presentation/index.html for the deck
 ```
 
-**Participants clone the same repo** and work inside `workshop-repo/`. The deck is
-`presentation/index.html` — open it in any browser; `S` for speaker notes, `O` for
-the slide overview, `T` to start the 90-minute pacing timer, `?` for all keys.
+**Participants clone the same repo** and work inside `workshop-repo/` — or scan the QR
+on the title slide. Before you present: press **S** to check the speaker notes and **T**
+to start the timer. Until you start it, the clock follows whatever slide you're on, so
+it's safe to jump around while rehearsing.
 
 ## Data Integrity Note
 Both datasets are generated deterministically so their headline numbers exactly match

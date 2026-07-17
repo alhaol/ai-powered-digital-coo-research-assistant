@@ -46,8 +46,25 @@ need the slide outline open alongside the deck.
 
 The timer (**T**) knows the module slots from the roadmap on slide 10 — Opening 12
 min, Module 1 → 0:35, Module 2 → 0:55, Module 3 → 1:15, Module 4 → 1:25, Closing →
-1:30. It turns **amber** when you run past the current module's slot, so you can see
-you're behind without doing arithmetic on stage.
+1:30. It behaves differently depending on whether you've started it:
+
+- **Before you start it**, the clock *follows the deck*. Skip to any slide and it shows
+  where that slide is scheduled to fall — jump to slide 29 and it reads `55:00`. Handy
+  when rehearsing or hopping around, because the clock always means something.
+- **Once running**, it's a real elapsed clock. Navigating no longer moves it (your
+  actual elapsed time is your actual elapsed time), and it tells you how far **ahead**
+  or **behind** the plan you are. Amber = past the current module's slot.
+
+**R** stops it and hands the clock back to the deck.
+
+## The QR Code
+Slides 1 and 49 carry a real, scannable QR to
+[the repo](https://github.com/alhaol/ai-powered-digital-coo-research-assistant) — inline
+SVG, so it works offline and stays crisp in print. Both are also clickable links.
+
+⚠️ **The QR is baked in, not derived.** If the repo URL ever changes, the SVG must be
+regenerated — the picture won't follow the text. See `CLAUDE.md` at the repo root for
+how.
 
 ## What's Inside
 All 50 slides from `../workshop-repo/slides/slide-outline.md`, rendered with the
